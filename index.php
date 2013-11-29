@@ -1,3 +1,3 @@
 <?php 
-include_once('./tools/mainAutoloader.php');
+include_once('./tools/mainAutoloader.class.php');
 ?>
