@@ -8,4 +8,4 @@ include_once($initialContext . 'tools/MainAutoloader.class.php');
 MainAutoloader::init($initialContext);
 $mainController = new MainController($initialContext);
 //$mainController->listen("sign-up");
-$mainController->render("index");
+$mainController->render("admin/index");
