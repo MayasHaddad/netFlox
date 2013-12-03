@@ -19,7 +19,8 @@ class MainController
 
     public function getTwigTemplateVariables()
     {
-    	return array();
+        return array();
+    	//return array('customers' => array( '1' => array( 'lastname' => 'aa', 'firstname' => 'bb' ), '2' => array( 'lastname' => 'cc', 'firstname' => 'aaa') ) );
     }
 
     public function render($page)
