@@ -16,6 +16,7 @@ class MainAutoloader
 			'SessionManager.class',
 			'DatabaseManager.class',
 			'Admin.class',
+			'Customer.class',
 			'UserConnectionController.class'
 			);
 		
