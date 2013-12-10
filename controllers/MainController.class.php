@@ -10,6 +10,7 @@ class MainController
     protected $initialContext;
 
     protected $userConnectionController;
+    
     protected $twigTemplateVariablesArray;
 
     function __construct($initialContext)
@@ -44,7 +45,44 @@ class MainController
         var_dump($_SESSION);*/
         echo $this->twigInstance->render($page . '.twig', $this->getTwigTemplateVariables());
     }
+    
+    // Customer controllers 
+    
+    public function customerSignUpFormListenener($getData)
+    {
+        if(isset($getData['sign-up'])){
+            $this->setTwigTemplateVariables(array('signUp' => true));
+        }
+    }
 
+     public function customerSignUpActionistenener($postData)
+    {
+        if(isset(
+                    $postData['sign-up'],
+                    $postData['lastname'], 
+                    $postData['firstname'], 
+                    $postData['mail-address'], 
+                    $postData['login'], 
+                    $postData['password'], 
+                    $postData['confirm-password'], 
+                    $postData['account-credit']
+                )
+                &&
+                $postData['password'] == $postData['confirm-password']
+            ) {
+
+            $customer = new Customer();
+            $customer->createNewCustomer(
+                $postData['login'],
+                $postData['lastname'], 
+                $postData['firstname'], 
+                $postData['mail-address'], 
+                $postData['password'],
+                $postData['account-credit']);
+        }
+    }
+
+    // Admin controllers
     public function adminConnectionListener($postData)
     {
         if(isset($postData['email'], $postData['password']))
