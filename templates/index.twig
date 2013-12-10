@@ -1,5 +1,14 @@
 {% extends 'common/index.twig' %}
 {% block title %} Netflox is cooler with its O {% endblock %}
 {% block header %} {% endblock %}
-{% block body %} {% endblock %}
+
+{% block body %} 
+	{% if signUp %}
+		{% include 'customer/sign-up-form.twig' %}
+	{% else %}
+		<a href="index.php?sign-up"> inscrivez-vous </a>
+	{% endif %}
+	
+{% endblock %}
+
 {% block footer %} {% endblock %}
