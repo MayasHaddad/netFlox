@@ -15,12 +15,12 @@ class UserConnectionController
     public function checkAdminData($postedData)
     {
     	$admin = new Admin();
-    	return (sizeof($admin->getAdminData($postedData['email'], $postedData['password'])) > 0);
+    	return ($admin->getNumberOfAdmins($postedData['email'], $postedData['password']) === 1);
     }
 
 	public function handleAdminConnection($postedData, $mailControllerInstance)
 	{
-		if($this->checkAdminData($postedData))
+		if($this->checkAdminData($postedData) === true)
 		{
 			$this->sessionManager->newOrResetSession();
 			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
