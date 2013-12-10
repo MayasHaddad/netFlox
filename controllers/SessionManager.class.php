@@ -19,8 +19,6 @@ class SessionManager
 			$this->endSession();
 		}
 		session_start();
-		
-		$_SESSION = $this->sessionVariables;
 	}
 
 	public function endSession()
