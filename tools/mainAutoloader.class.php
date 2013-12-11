@@ -12,7 +12,8 @@ class MainAutoloader
 		MainAutoLoader::$initialContext = $initialContext;
 		$classes = array(
 			'Autoloader',
-			'MainController.class'
+			'MainController.class',
+			'MovieEngine'
 			);
 		
 		array_walk($classes, 'MainAutoLoader::performRequire');
