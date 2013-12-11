@@ -4,10 +4,10 @@
 			Nom : <input type="text" name="lastname" {% block valueLastname %}{% endblock %}>
 		</li>
 		<li class="">
-			Prénom : <input type="text" name="firstame" {% block valueFirstname %}{% endblock %}>
+			Prénom : <input type="text" name="firstname" {% block valueFirstname %}{% endblock %}>
 		</li>
 		<li class="">
-			Adresse mail : <input type="text" name="mailAddress" {% block valueMailAddress %}{% endblock %}>
+			Adresse mail : <input type="text" name="mail-address" {% block valueMailAddress %}{% endblock %}>
 		</li>
 		<li class="">
 			Login : <input type="text" name="login" {% block valueLogin %}  value="{{ user.login }}" {% endblock %}>
@@ -17,10 +17,10 @@
 			{% block passwordLabel %} {% endblock %} <input type="password" name="password">
 		</li>
 		<li class="">
-			{% block confirmPasswordLabel %} {% endblock %} <input type="password" name="confirmPassword">
+			{% block confirmPasswordLabel %} {% endblock %} <input type="password" name="confirm-password">
 		</li>
 		<li class="">
-			Montant à créditer : <input type="text" name="accountCredit">
+			Montant à créditer : <input type="text" name="account-credit">
 		</li>
 		{% block currentCredit %} {% endblock %}
 		{% block submit %} {% endblock %}

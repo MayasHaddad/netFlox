@@ -3,11 +3,12 @@
         <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-	{% if not(connected) %}
-		{% include 'common/sign-in-form.twig' %}
-	{% else %}
         {% block header %} {% endblock %}
+        	
+        	{% if not(connected) %}
+				{% include 'common/sign-in-form.twig' %}
+			{% endif %}
+        
         {% block body %} {% endblock %}
         {% block footer %} {% endblock %}
-    {% endif %}
 </body>
