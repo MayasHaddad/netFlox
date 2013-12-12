@@ -17,7 +17,8 @@ class MainAutoloader
 			'DatabaseManager.class',
 			'Admin.class',
 			'Customer.class',
-			'UserConnectionController.class'
+			'UserConnectionController.class',
+			'AdminOnCustomerController.class'
 			);
 		
 		array_walk($classes, 'MainAutoLoader::performRequire');
