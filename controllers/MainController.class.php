@@ -91,4 +91,44 @@ class MainController
         }
         return;
     }
+	
+	//Movie controllers
+	
+	public function addNewMovie($postData)
+	{
+		if(isset(
+						$postData['title'],
+						$postData['day'], 
+						$postData['month'], 
+						$postData['year'], 
+						$postData['description'], 
+						$postData['actor'], 
+						$postData['director']
+				)
+			) {
+				$movieEngine = new MovieEngine();
+				$movieEngine->addMovie(
+					$postData['title'],
+					$postData['day'], 
+					$postData['month'], 
+					$postData['year'], 
+					$postData['description'], 
+					$postData['actor'],
+					$postData['director']);
+			}
+	}
+	
+	public function searchOneMovieByName($postData)
+	{
+		if(isset($postData['movieName'])) {
+				$movieEngine = new MovieEngine();
+				try{
+				$movieName = $movieEngine->getMovieByName(
+					$postData['movieName']
+					);
+				$this->setTwigTemplateVariables($movieName);
+				}
+				catch(Exception $e){echo "Le Film n'exste pas";}
+			}	
+	}
 }

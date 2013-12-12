@@ -11,4 +11,8 @@ $mainController = new MainController($initialContext);
 $mainController->customerSignUpFormListenener($_GET);
 
 $mainController->customerSignUpActionistenener($_POST);
+
+$mainController->addNewMovie($_POST);
+$mainController->searchOneMovieByName($_POST);
+
 $mainController->render("index");

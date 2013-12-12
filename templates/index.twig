@@ -8,7 +8,11 @@
 	{% else %}
 		<a href="index.php?sign-up"> inscrivez-vous </a>
 	{% endif %}
-	
+	{% include 'admin/add-new-movie-form.twig' %}
+	{% include 'movie/search-movie.twig' %}
+	{% if searchMovie %}
+		{% include 'movie/show-one-movie.twig' %}
+	{% endif %}
 {% endblock %}
 
 {% block footer %} {% endblock %}
