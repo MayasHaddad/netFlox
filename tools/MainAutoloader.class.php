@@ -18,12 +18,14 @@ class MainAutoloader
                         'Admin.class',
                         'Customer.class',
                         'UserConnectionController.class',
-						'movie.class'
+						'movie.class',	
+						'UserConnectionController.class',
+						'AdminOnCustomerController.class'
                         );
                 
                 array_walk($classes, 'MainAutoLoader::performRequire');
         }
-
+		
         public static function performRequire($className)
         {
                 if(file_exists($className . '.php'))

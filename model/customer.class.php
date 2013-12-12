@@ -30,4 +30,9 @@ class Customer
 			)
 		);
 	}
+
+	public function getAllCustomers()
+	{
+		return $this->dataBaseConnection->query("SELECT login, lastname, firstname, email, credit FROM customer");
+	}
 }

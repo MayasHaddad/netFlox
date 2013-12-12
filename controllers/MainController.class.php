@@ -12,6 +12,7 @@ class MainController
     protected $userConnectionController;
     
     protected $twigTemplateVariablesArray;
+    protected $adminOnCustomerController;
 
     function __construct($initialContext)
     {
@@ -21,6 +22,7 @@ class MainController
         $this->twigInstance = new Twig_Environment($this->loader, array('cache' => false));
         
         $this->userConnectionController = new UserConnectionController();
+        $this->adminOnCustomerController = new AdminOnCustomerController();
 
         $this->twigTemplateVariablesArray = array();
     }
@@ -48,14 +50,14 @@ class MainController
     
     // Customer controllers 
     
-    public function customerSignUpFormListenener($getData)
+    public function customerSignUpFormListener($getData)
     {
         if(isset($getData['sign-up'])){
             $this->setTwigTemplateVariables(array('signUp' => true));
         }
     }
 
-     public function customerSignUpActionistenener($postData)
+     public function customerSignUpActionListener($postData)
     {
         if(isset(
                     $postData['sign-up'],
@@ -90,8 +92,7 @@ class MainController
             $this->userConnectionController->handleAdminConnection($postData, $this);
         }
         return;
-    }
-	
+    }	
 	//Movie controllers
 	
 	public function addNewMovie($postData)
@@ -131,4 +132,12 @@ class MainController
 				catch(Exception $e){echo "Le Film n'exste pas";}
 			}	
 	}
+    
+	public function adminSeeAllCustomersListener($getData)
+    {
+        if(isset($getData['see-cutomers']))
+        {
+            $this->adminOnCustomerController->seeAllCustomers($this);
+        }
+    }
 }

@@ -8,9 +8,8 @@ include_once($initialContext . 'tools/MainAutoloader.class.php');
 MainAutoloader::init($initialContext);
 $mainController = new MainController($initialContext);
 //$mainController->listen("sign-up");
-$mainController->customerSignUpFormListenener($_GET);
-
-$mainController->customerSignUpActionistenener($_POST);
+$mainController->customerSignUpFormListener($_GET);
+$mainController->customerSignUpActionListener($_POST);
 
 $mainController->addNewMovie($_POST);
 $mainController->searchOneMovieByName($_POST);

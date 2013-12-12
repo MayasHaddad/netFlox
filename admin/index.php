@@ -11,4 +11,8 @@ $mainController = new MainController($initialContext);
 /*$sm = new SessionManager(array('idCustomer' => 5));
 $sm->newOrResetSession();*/
 $mainController->adminConnectionListener($_POST);
+
+$mainController->adminSeeAllCustomersListener($_GET);
+$mainController->addNewMovie($_POST);
+
 $mainController->render("admin/index");
