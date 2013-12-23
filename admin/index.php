@@ -13,6 +13,7 @@ $mainController = new MainController($initialContext);
 $mainController->adminConnectionListener($_POST);
 
 $mainController->adminSeeAllCustomersListener($_GET);
+$mainController->addNewMovie($_POST);
 
 $mainController->adminRemoveCustomerListener($_GET);
 
