@@ -5,20 +5,37 @@
 */
 class AdminOnCustomerController
 {
-	function __construct()
+    protected $userConnectionController;
+    protected $session;
+    protected $customer;
+    protected $mainController;
+
+	function __construct($mainController)
     {
-    	
+    	$this->userConnectionController = new UserConnectionController();
+        
+        $this->session = new SessionManager();
+
+        $this->customer = new Customer();
+
+        $this->mainController = $mainController;
     }
 
-    public function printAllCustomers($mainController)
+    public function printAllCustomers()
     {
-    	$userConnectionController = new UserConnectionController();
-    	echo "string";
-    	if($userConnectionController->checkAdminData($_SESSION))
+    	if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
     	{
-	    	$customer = new Customer();
-    		var_dump($customer->getAllCustomers());
-    		$mainController->setTwigTemplateVariables(array('connected' => true , 'customers' => $customer->getAllCustomers()));	
+    		$this->mainController->addTwigTemlateVariables(array('connected' => true, 'customers' => $this->customer->getAllCustomers()));
     	}
+    }
+
+    public function removeCustommer($idCustomer)
+    {
+        if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
+        {
+            $this->customer->removeCustomer($idCustomer);
+
+            $this->mainController->addTwigTemlateVariables(array('connected' => true, 'notification' => 'Customer Deleted !', 'customers' => $this->customer->getAllCustomers()));
+        }
     }
 }

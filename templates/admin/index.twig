@@ -4,6 +4,8 @@
 	{% include 'admin/admin-header.twig' %} 
 {% endblock %}
 {% block body %} 
-
+	{% if customers %}
+		{% include 'admin/show-customers.twig' %}
+	{% endif %}
 {% endblock %}
 {% block footer %} {% endblock %}

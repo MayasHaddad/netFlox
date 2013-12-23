@@ -22,7 +22,8 @@ class MainController
         $this->twigInstance = new Twig_Environment($this->loader, array('cache' => false));
         
         $this->userConnectionController = new UserConnectionController();
-        $this->adminOnCustomerController = new AdminOnCustomerController();
+
+        $this->adminOnCustomerController = new AdminOnCustomerController($this);
 
         $this->twigTemplateVariablesArray = array();
     }
@@ -36,6 +37,17 @@ class MainController
     {
         return $this->twigTemplateVariablesArray;
     	//return array('customers' => array( '1' => array( 'lastname' => 'aa', 'firstname' => 'bb' ), '2' => array( 'lastname' => 'cc', 'firstname' => 'aaa') ) );
+    }
+
+    public function addTwigTemlateVariables($variableArrayToAdd)
+    {
+        if(sizeof((array)$this->getTwigTemplateVariables()) > 0)
+        {
+            $this->setTwigTemplateVariables(array_merge( (array)$this->getTwigTemplateVariables(), (array)$variableArrayToAdd ));   
+        }else
+        {
+            $this->setTwigTemplateVariables((array)$variableArrayToAdd);
+        }
     }
 
     public function render($page)
@@ -57,7 +69,7 @@ class MainController
         }
     }
 
-     public function customerSignUpActionListener($postData)
+    public function customerSignUpActionListener($postData)
     {
         if(isset(
                     $postData['sign-up'],
@@ -96,9 +108,17 @@ class MainController
 
     public function adminSeeAllCustomersListener($getData)
     {
-        if(isset($getData['see-cutomers']))
+        if(isset($getData['see-customers']))
         {
-            $this->adminOnCustomerController->seeAllCustomers($this);
+            $this->adminOnCustomerController->printAllCustomers();
+        }
+    }
+
+    public function adminRemoveCustomerListener($getData)
+    {
+        if(isset($getData['remove-customer'], $getData['id-customer']))
+        {
+            $this->adminOnCustomerController->removeCustommer($getData['id-customer']);
         }
     }
 }
