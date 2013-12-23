@@ -22,13 +22,14 @@ class UserConnectionController
 	{
 		if($this->checkAdminData($postedData) === true)
 		{
-			$this->sessionManager->newOrResetSession();
+			$this->sessionManager->newOrResetSession($postedData);
+
 			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
 		}
 	}
 
 	public function handleCustomerConnection($postedData)
 	{
-
+		
 	}
 }
