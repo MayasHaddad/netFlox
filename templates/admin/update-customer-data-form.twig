@@ -1,0 +1,9 @@
+{% extends 'customer/customer-information-form.twig' %}
+
+{% block valueId %} {{customer.id_customer}} {% endblock %}
+{% block valueLastname %} value = {{customer.lastname}} {% endblock %}
+{% block valueFirstname %} value = {{customer.firstname }} {% endblock %}
+{% block valueMailAddress %} value = {{customer.email }} {% endblock %}
+{% block valueLogin %} value = {{customer.login}} {% endblock %}
+{% block currentCredit %} value = {{customer.credit}} {% endblock %}
+{% block submit %} <input type="submit" name="update-customer" value="submit"> {% endblock %}
