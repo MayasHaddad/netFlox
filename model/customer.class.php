@@ -31,8 +31,21 @@ class Customer
 		);
 	}
 
+	public function removeCustomer($idCustomer)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"DELETE FROM customer WHERE id_customer = :idCustomer"
+		);
+
+		$statement->execute(
+			array(
+				':idCustomer' => $idCustomer
+			)
+		);
+	}
+
 	public function getAllCustomers()
 	{
-		return $this->dataBaseConnection->query("SELECT login, lastname, firstname, email, credit FROM customer");
+		return $this->dataBaseConnection->query("SELECT id_customer, login, lastname, firstname, email, credit FROM customer");
 	}
 }
