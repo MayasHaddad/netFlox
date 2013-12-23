@@ -25,8 +25,24 @@ class AdminOnCustomerController
     {
     	if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
     	{
-    		$this->mainController->addTwigTemlateVariables(array('connected' => true, 'customers' => $this->customer->getAllCustomers()));
+    		$this->mainController->addTwigTemlateVariables(
+                array(
+                    'connected' => true, 'customers' => $this->customer->getAllCustomers()
+                )
+            );
     	}
+    }
+
+    public function printOneCustomer($idCustomer)
+    {
+        if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
+        {
+            $this->mainController->addTwigTemlateVariables(
+                array(
+                    'connected' => true, 'customer' => $this->customer->getOneCustomer($idCustomer)
+                )
+            );
+        }
     }
 
     public function removeCustommer($idCustomer)
@@ -35,7 +51,25 @@ class AdminOnCustomerController
         {
             $this->customer->removeCustomer($idCustomer);
 
-            $this->mainController->addTwigTemlateVariables(array('connected' => true, 'notification' => 'Customer Deleted !', 'customers' => $this->customer->getAllCustomers()));
+            $this->mainController->addTwigTemlateVariables(
+                array(
+                    'connected' => true, 'notification' => 'Customer successfully deleted !', 'customers' => $this->customer->getAllCustomers()
+                )
+            );
+        }
+    }
+
+    public function updateCustommerData($idCustomer, $newCustomerData)
+    {
+        if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
+        {
+            $this->customer->updateCustomer($idCustomer, $newCustomerData);
+
+            $this->mainController->addTwigTemlateVariables(
+                array(
+                    'connected' => true, 'notification' => 'Customer successfully updated !', 'customers' => $this->customer->getAllCustomers()
+                )
+            );
         }
     }
 }

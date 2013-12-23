@@ -3,9 +3,13 @@
 {% block header %}
 	{% include 'admin/admin-header.twig' %} 
 {% endblock %}
+
 {% block body %} 
 	{% if customers %}
 		{% include 'admin/show-customers.twig' %}
+	{% elseif customer %}
+		{% include 'admin/update-customer-data-form.twig' %}
 	{% endif %}
 {% endblock %}
+
 {% block footer %} {% endblock %}

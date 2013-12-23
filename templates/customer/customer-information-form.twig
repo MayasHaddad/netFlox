@@ -1,4 +1,5 @@
 <form name="input" action="#" method="post">
+	<input type="hidden" name="id-customer" value="{% block valueId %}{% endblock %}">
 	<ul class="">
 		<li class="">
 			Nom : <input type="text" name="lastname" {% block valueLastname %}{% endblock %}>
@@ -10,19 +11,13 @@
 			Adresse mail : <input type="text" name="mail-address" {% block valueMailAddress %}{% endblock %}>
 		</li>
 		<li class="">
-			Login : <input type="text" name="login" {% block valueLogin %}  value="{{ user.login }}" {% endblock %}>
+			Login : <input type="text" name="login" {% block valueLogin %} {% endblock %}>
 		</li>
-		{% block oldPassword %} {% endblock %}
+		{% block password %}
+		{% endblock %}
 		<li class="">
-			{% block passwordLabel %} {% endblock %} <input type="password" name="password">
+			Montant à créditer : <input type="text" name="credit" {% block currentCredit %} {% endblock %}>
 		</li>
-		<li class="">
-			{% block confirmPasswordLabel %} {% endblock %} <input type="password" name="confirm-password">
-		</li>
-		<li class="">
-			Montant à créditer : <input type="text" name="account-credit">
-		</li>
-		{% block currentCredit %} {% endblock %}
 		{% block submit %} {% endblock %}
 	</ul>
 </form>

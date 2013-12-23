@@ -13,8 +13,13 @@ $mainController = new MainController($initialContext);
 $mainController->adminConnectionListener($_POST);
 
 $mainController->adminSeeAllCustomersListener($_GET);
-$mainController->addNewMovie($_POST);
+
+$mainController->adminSeeOneCustomerListener($_GET);
 
 $mainController->adminRemoveCustomerListener($_GET);
+
+$mainController->adminUpdateCustomerListener($_POST);
+
+$mainController->addNewMovie($_POST);
 
 $mainController->render("admin/index");

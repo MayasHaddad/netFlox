@@ -44,6 +44,40 @@ class Customer
 		);
 	}
 
+	public function updateCustomer($idCustomer, $newCustomerData)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"UPDATE customer SET login = :login, lastname = :lastname, firstname = :firstname, credit = :credit
+			WHERE id_customer = :idCustomer"
+		);
+
+		$statement->execute(
+			array(
+				':login' => $newCustomerData['login'],
+				':lastname' => $newCustomerData['lastname'], 
+				':firstname' => $newCustomerData['firstname'],
+				':credit' => $newCustomerData['credit'],
+				':idCustomer' => $idCustomer
+			)
+		);
+	}
+
+	public function getOneCustomer($idCustomer)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"SELECT id_customer, login, lastname, firstname, email, credit FROM customer 
+			WHERE id_customer = :idCustomer"
+		);
+
+		$statement->execute(
+			array(
+				':idCustomer' => $idCustomer
+			)
+		);
+
+		return $statement->fetch();
+	}
+
 	public function getAllCustomers()
 	{
 		return $this->dataBaseConnection->query("SELECT id_customer, login, lastname, firstname, email, credit FROM customer");

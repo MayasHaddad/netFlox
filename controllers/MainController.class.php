@@ -104,7 +104,40 @@ class MainController
             $this->userConnectionController->handleAdminConnection($postData, $this);
         }
         return;
-    }	
+    }
+
+    public function adminSeeAllCustomersListener($getData)
+    {
+        if(isset($getData['see-customers']))
+        {
+            $this->adminOnCustomerController->printAllCustomers();
+        }
+    }
+
+    public function adminSeeOneCustomerListener($getData)
+    {
+        if(isset($getData['see-one-customer'], $getData['id-customer']))
+        {
+            $this->adminOnCustomerController->printOneCustomer($getData['id-customer']);
+        }
+    }
+
+    public function adminRemoveCustomerListener($getData)
+    {
+        if(isset($getData['remove-customer'], $getData['id-customer']))
+        {
+            $this->adminOnCustomerController->removeCustommer($getData['id-customer']);
+        }
+    }
+
+    public function adminUpdateCustomerListener($postData)
+    {
+        if(isset($postData['update-customer'], $postData['id-customer']))
+        {
+            $this->adminOnCustomerController->updateCustommerData($postData['id-customer'], $postData);
+        }
+    }
+
 	//Movie controllers
 	
 	public function addNewMovie($postData)
@@ -144,20 +177,4 @@ class MainController
 				catch(Exception $e){echo "Le Film n'exste pas";}
 			}	
 	}
-    
-	public function adminSeeAllCustomersListener($getData)
-    {
-        if(isset($getData['see-customers']))
-        {
-            $this->adminOnCustomerController->printAllCustomers();
-        }
-    }
-
-    public function adminRemoveCustomerListener($getData)
-    {
-        if(isset($getData['remove-customer'], $getData['id-customer']))
-        {
-            $this->adminOnCustomerController->removeCustommer($getData['id-customer']);
-        }
-    }
 }
