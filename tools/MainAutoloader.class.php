@@ -20,7 +20,8 @@ class MainAutoloader
                         'UserConnectionController.class',
 						'movie.class',	
 						'UserConnectionController.class',
-						'AdminOnCustomerController.class'
+						'AdminOnCustomerController.class',
+                                                'AdminOnMovieController.class'
                         );
                 
                 array_walk($classes, 'MainAutoLoader::performRequire');
