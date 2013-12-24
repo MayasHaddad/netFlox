@@ -59,6 +59,18 @@ class AdminOnCustomerController
         }
     }
 
+    public function addACustomerForm()
+    {
+        if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
+        {
+            $this->mainController->addTwigTemlateVariables(
+                array(
+                    'connected' => true
+                )
+            );
+        }
+    }
+    
     public function updateCustommerData($idCustomer, $newCustomerData)
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))

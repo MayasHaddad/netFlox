@@ -1,6 +1,14 @@
 {% extends "customer/customer-information-form.twig" %}
-{% block passwordLabel %} Mot de passe : {% endblock %}
-{% block confirmPasswordLabel %} Confirmer mot de passe : {% endblock %}
+{% block password %} 
+	<li class=""> 
+		Mot de passe : <input type="password" name="password">
+	</li>
+
+	<li class=""> 
+		Confirmer mot de passe : <input type="password" name="confirm-password">
+	</li>
+{% endblock %}
+
 {% block submit %} 
 	<li class="">
 		<input type="submit" name="sign-up" value="Submit">

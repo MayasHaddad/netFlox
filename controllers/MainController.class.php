@@ -65,7 +65,10 @@ class MainController
     public function customerSignUpFormListener($getData)
     {
         if(isset($getData['sign-up'])){
+            
             $this->setTwigTemplateVariables(array('signUp' => true));
+            
+            $this->adminOnCustomerController->addACustomerForm();
         }
     }
 
@@ -79,7 +82,7 @@ class MainController
                     $postData['login'], 
                     $postData['password'], 
                     $postData['confirm-password'], 
-                    $postData['account-credit']
+                    $postData['credit']
                 )
                 &&
                 $postData['password'] == $postData['confirm-password']
@@ -92,7 +95,7 @@ class MainController
                 $postData['firstname'], 
                 $postData['mail-address'], 
                 $postData['password'],
-                $postData['account-credit']);
+                $postData['credit']);
         }
     }
 

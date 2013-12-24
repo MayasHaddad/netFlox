@@ -15,7 +15,13 @@ class UserConnectionController
     public function checkAdminData($postedData)
     {
     	$admin = new Admin();
-    	return ($admin->getNumberOfAdmins($postedData['email'], $postedData['password']) === 1);
+    	
+    	if(isset($postedData['email'], $postedData['password']))
+    	{
+    		return ($admin->getNumberOfAdmins($postedData['email'], $postedData['password']) === 1);	
+    	}
+    	
+    	return false;
     }
 
 	public function handleAdminConnection($postedData, $mailControllerInstance)

@@ -9,6 +9,8 @@
 		{% include 'admin/show-customers.twig' %}
 	{% elseif customer %}
 		{% include 'admin/update-customer-data-form.twig' %}
+	{% elseif signUp %}
+		{% include 'customer/sign-up-form.twig' %}
 	{% endif %}
 {% endblock %}
 

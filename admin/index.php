@@ -20,6 +20,10 @@ $mainController->adminRemoveCustomerListener($_GET);
 
 $mainController->adminUpdateCustomerListener($_POST);
 
+$mainController->customerSignUpFormListener($_GET);
+
+$mainController->customerSignUpActionListener($_POST);
+
 $mainController->addNewMovie($_POST);
 
 $mainController->render("admin/index");
