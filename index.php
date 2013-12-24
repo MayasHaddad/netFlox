@@ -9,9 +9,9 @@ MainAutoloader::init($initialContext);
 $mainController = new MainController($initialContext);
 //$mainController->listen("sign-up");
 $mainController->customerSignUpFormListener($_GET);
+
 $mainController->customerSignUpActionListener($_POST);
 
-$mainController->addNewMovie($_POST);
 $mainController->searchOneMovieByName($_POST);
 
 $mainController->render("index");
