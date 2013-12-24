@@ -25,6 +25,8 @@ class MainController
 
         $this->adminOnCustomerController = new AdminOnCustomerController($this);
 
+        $this->adminOnMovieController = new AdminOnMovieController($this);
+
         $this->twigTemplateVariablesArray = array();
     }
 
@@ -143,6 +145,14 @@ class MainController
 
 	//Movie controllers
 	
+    public function addNewMovieForm($getData)
+    {
+        if(isset($getData['add-movie']))
+        {
+            $this->adminOnMovieController->getAddMovieForm();   
+        }
+    }
+
 	public function addNewMovie($postData)
 	{
 		if(isset(
