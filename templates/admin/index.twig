@@ -11,6 +11,8 @@
 		{% include 'admin/update-customer-data-form.twig' %}
 	{% elseif signUp %}
 		{% include 'customer/sign-up-form.twig' %}
+	{% elseif addMovie %}
+		{% include 'admin/add-new-movie-form.twig' %}
 	{% endif %}
 {% endblock %}
 
