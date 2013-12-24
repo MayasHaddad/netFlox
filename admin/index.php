@@ -24,6 +24,8 @@ $mainController->customerSignUpFormListener($_GET);
 
 $mainController->customerSignUpActionListener($_POST);
 
+$mainController->addNewMovieForm($_GET);
+
 $mainController->addNewMovie($_POST);
 
 $mainController->render("admin/index");
