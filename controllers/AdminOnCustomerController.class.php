@@ -1,6 +1,6 @@
 <?php
 /**
-* This controller handles the user connection to the account and deconnection
+* This controller handles the admin manipulations on customers
 * @author Mayas Haddad
 */
 class AdminOnCustomerController
