@@ -22,20 +22,19 @@ class SessionManager
 
 	public function endSession()
 	{
+		session_start();
+		session_unset();
 		session_destroy();
 	}
 
 	public function getSessionVariable($sessionVariableName = null)
-	{		
-		if(session_status() !== PHP_SESSION_ACTIVE)
+	{	
+		session_start();
+
+		if($sessionVariableName)
 		{
-			session_start();
+			return $_SESSION[$sessionVariableName];	
 		}
-			if($sessionVariableName)
-			{
-				return $_SESSION[$sessionVariableName];	
-			}
-			return $_SESSION;
-		throw new Exception("Could not get session variable, no active session active session", 1);
+		return $_SESSION;
 	}
 }
