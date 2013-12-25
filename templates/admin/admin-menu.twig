@@ -1,4 +1,5 @@
-<ul class="">
+{% extends 'common/signed-in-menu.twig' %}
+{% block menuItems %}
 	<li class="">
 		<a href="index.php?see-customers"> Modifier les clients </a>
 	</li>
@@ -8,4 +9,4 @@
 	<li class="">
 		<a href="index.php?add-movie"> Ajouter de nouvelles entrées catalogue </a>
 	</li>
-</ul>
+{% endblock %}
