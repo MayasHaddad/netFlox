@@ -101,6 +101,15 @@ class MainController
         }
     }
 
+
+    public function deconnectionListener($getData)
+    {
+        if(isset($getData['sign-out']))
+        {
+            $this->userConnectionController->handleUserDeconnection();
+        }
+    }
+
     // Admin controllers
     public function adminConnectionListener($postData)
     {
