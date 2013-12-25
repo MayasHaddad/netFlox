@@ -38,4 +38,9 @@ class UserConnectionController
 	{
 		
 	}
+
+	public function handleUserDeconnection()
+	{
+		$this->sessionManager->endSession();
+	}
 }
