@@ -38,13 +38,13 @@ class MovieEngine
 		
 		$movies->appendChild($movie);
 		
-		$this->movieTree->save('./data/movie.xml');	
+		$this->movieTree->save('../data/movie.xml');	
 	}
 	
 	public function loadMovies()
 	{
 		$document_xml = new DomDocument(); 
-		$document_xml->load('./data/movie.xml');
+		$document_xml->load('../data/movie.xml');
 		return $document_xml;
 	}
 	
