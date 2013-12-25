@@ -28,4 +28,6 @@ $mainController->addNewMovieForm($_GET);
 
 $mainController->addNewMovie($_POST);
 
+$mainController->deconnectionListener($_GET);
+
 $mainController->render("admin/index");
