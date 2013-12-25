@@ -30,4 +30,6 @@ $mainController->addNewMovie($_POST);
 
 $mainController->deconnectionListener($_GET);
 
+$mainController->adminStillSignedIn();
+
 $mainController->render("admin/index");
