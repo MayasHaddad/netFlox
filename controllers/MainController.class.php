@@ -17,7 +17,9 @@ class MainController
     function __construct($initialContext)
     {
     	$this->initialContext = $initialContext;
+
         Twig_Autoloader::register();
+        
         $this->loader = new Twig_Loader_Filesystem($this->initialContext . 'templates'); // directory which contains the template files
         $this->twigInstance = new Twig_Environment($this->loader, array('cache' => false));
         
@@ -25,7 +27,7 @@ class MainController
 
         $this->adminOnCustomerController = new AdminOnCustomerController($this);
 
-        $this->adminOnMovieController = new AdminOnMovieController($this);
+        $this->adminOnMovieController = new AdminOnMovieController($this, $initialContext);
 
         $this->twigTemplateVariablesArray = array();
     }
@@ -41,15 +43,19 @@ class MainController
     	//return array('customers' => array( '1' => array( 'lastname' => 'aa', 'firstname' => 'bb' ), '2' => array( 'lastname' => 'cc', 'firstname' => 'aaa') ) );
     }
 
-    public function addTwigTemlateVariables($variableArrayToAdd)
+    public function addTwigTemplateVariables($variableArrayToAdd)
     {
-        if(sizeof((array)$this->getTwigTemplateVariables()) > 0)
-        {
-            $this->setTwigTemplateVariables(array_merge( (array)$this->getTwigTemplateVariables(), (array)$variableArrayToAdd ));   
-        }else
-        {
-            $this->setTwigTemplateVariables((array)$variableArrayToAdd);
+        $twigVariablesArray = $this->getTwigTemplateVariables();
+        
+        foreach ($variableArrayToAdd as $key => $value) {
+
+            if(array_key_exists($key, $twigVariablesArray) === false)
+            {
+                $twigVariablesArray[$key] = $value;
+            }
         }
+
+        $this->setTwigTemplateVariables($twigVariablesArray);
     }
 
     public function render($page)
@@ -111,6 +117,12 @@ class MainController
     }
 
     // Admin controllers
+    
+    public function adminStillSignedIn()
+    {
+        $this->userConnectionController->adminStillSignedIn($this);
+    }
+
     public function adminConnectionListener($postData)
     {
         if(isset($postData['email'], $postData['password']))
@@ -162,7 +174,7 @@ class MainController
         }
     }
 
-	public function addNewMovie($postData)
+	public function addNewMovie($postData, $initialContext)
 	{
 		if(isset(
 						$postData['title'],
@@ -174,7 +186,7 @@ class MainController
 						$postData['director']
 				)
 			) {
-				$movieEngine = new MovieEngine();
+				$movieEngine = new MovieEngine($initialContext);
 				$movieEngine->addMovie(
 					$postData['title'],
 					$postData['day'], 
@@ -186,10 +198,10 @@ class MainController
 			}
 	}
 	
-	public function searchOneMovieByName($postData)
+	public function searchOneMovieByName($postData, $initialContext)
 	{
 		if(isset($postData['movieName'])) {
-				$movieEngine = new MovieEngine();
+				$movieEngine = new MovieEngine($initialContext);
 				try{
 				$movieName = $movieEngine->getMovieByName(
 					$postData['movieName']
