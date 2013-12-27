@@ -107,6 +107,14 @@ class MainController
         }
     }
 
+    public function customerConnectionListener($postData)
+    {
+        if(isset($postData['email'], $postData['password']))
+        {
+            $this->userConnectionController->handleCustomerConnection($postData, $this);
+        }
+        return;
+    }
 
     public function deconnectionListener($getData)
     {

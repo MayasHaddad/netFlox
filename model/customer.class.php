@@ -82,4 +82,12 @@ class Customer
 	{
 		return $this->dataBaseConnection->query("SELECT id_customer, login, lastname, firstname, email, credit FROM customer");
 	}
+
+	function getNumberOfCustomers($email, $password)
+	{
+		$statement = $this->dataBaseConnection->prepare("SELECT COUNT(*) FROM customer WHERE (email = :email OR login = :email) AND password = :password");
+		$statement->execute(array(':email' => $email, ':password' => md5($password)));
+
+		return (int) $statement->fetch()[0];
+	}
 }

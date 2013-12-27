@@ -7,7 +7,9 @@ $initialContext = "./";
 include_once($initialContext . 'tools/MainAutoloader.class.php');
 MainAutoloader::init($initialContext);
 $mainController = new MainController($initialContext);
-//$mainController->listen("sign-up");
+
+$mainController->customerConnectionListener($_POST);
+
 $mainController->customerSignUpFormListener($_GET);
 
 $mainController->customerSignUpActionListener($_POST);

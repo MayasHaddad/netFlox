@@ -24,9 +24,31 @@ class UserConnectionController
     	return false;
     }
 
+    public function checkCustomerData($postedData)
+    {
+    	$customer = new Customer();
+    	
+    	if(isset($postedData['email'], $postedData['password']))
+    	{
+    		return ($customer->getNumberOfCustomers($postedData['email'], $postedData['password']) === 1);	
+    	}
+    	
+    	return false;
+    }
+
 	public function handleAdminConnection($postedData, $mailControllerInstance)
 	{
 		if($this->checkAdminData($postedData) === true)
+		{
+			$this->sessionManager->newOrResetSession($postedData);
+
+			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
+		}
+	}
+
+	public function handleCustomerConnection($postedData, $mailControllerInstance)
+	{
+		if($this->checkCustomerData($postedData) === true)
 		{
 			$this->sessionManager->newOrResetSession($postedData);
 
@@ -40,11 +62,6 @@ class UserConnectionController
 		{
 			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
 		}
-	}
-
-	public function handleCustomerConnection($postedData)
-	{
-		
 	}
 
 	public function handleUserDeconnection()
