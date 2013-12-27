@@ -34,6 +34,14 @@ class UserConnectionController
 		}
 	}
 
+	public function adminStillSignedIn($mailControllerInstance)
+	{
+		if($this->checkAdminData($this->sessionManager->getSessionVariable()) === true)
+		{
+			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+		}
+	}
+
 	public function handleCustomerConnection($postedData)
 	{
 		
