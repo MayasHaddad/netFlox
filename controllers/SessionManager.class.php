@@ -22,14 +22,22 @@ class SessionManager
 
 	public function endSession()
 	{
-		session_start();
+		if(session_status() !== PHP_SESSION_ACTIVE)
+		{
+			session_start();
+		}
+
 		session_unset();
 		session_destroy();
 	}
 
 	public function getSessionVariable($sessionVariableName = null)
 	{	
-		session_start();
+
+		if(session_status() !== PHP_SESSION_ACTIVE)
+		{
+			session_start();
+		}
 
 		if($sessionVariableName)
 		{
