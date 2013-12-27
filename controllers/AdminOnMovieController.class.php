@@ -10,13 +10,13 @@ class AdminOnMovieController
     protected $movieEngine;
     protected $mainController;
 
-	function __construct($mainController)
+	function __construct($mainController, $initialContext)
     {
     	$this->userConnectionController = new UserConnectionController();
         
         $this->session = new SessionManager();
 
-        $this->movieEngine = new MovieEngine();
+        $this->movieEngine = new MovieEngine($initialContext);
 
         $this->mainController = $mainController;
     }
@@ -25,7 +25,7 @@ class AdminOnMovieController
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
-            $this->mainController->addTwigTemlateVariables(
+            $this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true, 'addMovie' => true
                 )

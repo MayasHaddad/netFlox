@@ -3,12 +3,15 @@ class MovieEngine
 {
 	var $movieTree;
 	var $XpathTree;
+
+	protected $pathToMovieData;
 	
-	public function __construct() 
+	public function __construct($initialContext) 
 	{		
-		$this->movieTree = $this->loadMovies();
-		$this->XPathTree = new DOMXPath($this->movieTree);
+		$this->pathToMovieData = $initialContext . 'data/movie.xml';
 		
+		$this->movieTree = $this->loadMovies();
+		$this->XPathTree = new DOMXPath($this->movieTree);		
 	}
 	
 	public function addMovie($titre, $jour, $mois, $annee, $description, $acteur, $realisateur)
@@ -38,13 +41,13 @@ class MovieEngine
 		
 		$movies->appendChild($movie);
 		
-		$this->movieTree->save('../data/movie.xml');	
+		$this->movieTree->save($this->pathToMovieData);	
 	}
 	
 	public function loadMovies()
 	{
 		$document_xml = new DomDocument(); 
-		$document_xml->load('../data/movie.xml');
+		$document_xml->load($this->pathToMovieData);
 		return $document_xml;
 	}
 	

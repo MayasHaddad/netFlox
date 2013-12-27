@@ -26,7 +26,7 @@ $mainController->customerSignUpActionListener($_POST);
 
 $mainController->addNewMovieForm($_GET);
 
-$mainController->addNewMovie($_POST);
+$mainController->addNewMovie($_POST, $initialContext);
 
 $mainController->deconnectionListener($_GET);
 

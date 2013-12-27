@@ -12,6 +12,6 @@ $mainController->customerSignUpFormListener($_GET);
 
 $mainController->customerSignUpActionListener($_POST);
 
-$mainController->searchOneMovieByName($_POST);
+$mainController->searchOneMovieByName($_POST, $initialContext);
 
 $mainController->render("index");
