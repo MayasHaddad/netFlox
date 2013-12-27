@@ -25,7 +25,7 @@ class AdminOnCustomerController
     {
     	if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
     	{
-    		$this->mainController->addTwigTemlateVariables(
+    		$this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true, 'customers' => $this->customer->getAllCustomers()
                 )
@@ -37,7 +37,7 @@ class AdminOnCustomerController
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
-            $this->mainController->addTwigTemlateVariables(
+            $this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true, 'customer' => $this->customer->getOneCustomer($idCustomer)
                 )
@@ -63,7 +63,7 @@ class AdminOnCustomerController
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
-            $this->mainController->addTwigTemlateVariables(
+            $this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true
                 )
