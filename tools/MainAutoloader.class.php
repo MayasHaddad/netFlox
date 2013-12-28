@@ -18,11 +18,12 @@ class MainAutoloader
                         'Admin.class',
                         'Customer.class',
                         'UserConnectionController.class',
-						'movie.class',	
-						'UserConnectionController.class',
-						'AdminOnCustomerController.class',
-                                                'AdminOnMovieController.class'
-                        );
+			'movie.class',	
+			'UserConnectionController.class',
+			'AdminOnCustomerController.class',
+                        'CustomerOnCustomerController.class',
+                        'AdminOnMovieController.class'
+                );
                 
                 array_walk($classes, 'MainAutoLoader::performRequire');
         }
