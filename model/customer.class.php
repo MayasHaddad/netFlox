@@ -126,20 +126,22 @@ class Customer
   			$this->dataBaseConnection->beginTransaction();
   			
   			$statement = $this->dataBaseConnection->prepare(
-			'UPDATE customer SET credit = '
+			'UPDATE customer SET credit = credit - :creditAmount WHERE id_customer = :idCustomer'
 			);
 		    $statement->execute(
 				array(
-					':idCustomer' => $idGenerousCustomer
+					':idCustomer' => $idGenerousCustomer,
+					':creditAmount' => $creditAmount
 				)
 			);
 
 		    $statement = $this->dataBaseConnection->prepare(
-			'UPDATE customer SET credit = '
+			'UPDATE customer SET credit = credit + :creditAmount WHERE id_customer = :idCustomer'
 			);
 		    $statement->execute(
 				array(
-					':idCustomer' => $idLuckyCustomer
+					':idCustomer' => $idLuckyCustomer,
+					':creditAmount' => $creditAmount
 				)
 			);
 
