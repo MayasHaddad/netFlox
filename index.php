@@ -16,4 +16,8 @@ $mainController->customerSignUpActionListener($_POST);
 
 $mainController->searchOneMovieByName($_POST, $initialContext);
 
+$mainController->customerOfferCredit($_GET);
+
+$mainController->customerStillSignedIn();
+
 $mainController->render("index");
