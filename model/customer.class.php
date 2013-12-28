@@ -78,16 +78,76 @@ class Customer
 		return $statement->fetch();
 	}
 
+	public function getAccountCredit($idCustomer)
+	{
+		return $this->getOneCustomer($idCustomer)['credit'];	
+	}
+
 	public function getAllCustomers()
 	{
 		return $this->dataBaseConnection->query("SELECT id_customer, login, lastname, firstname, email, credit FROM customer");
 	}
 
-	function getNumberOfCustomers($email, $password)
+	public function getNumberOfCustomers($email, $password)
 	{
 		$statement = $this->dataBaseConnection->prepare("SELECT COUNT(*) FROM customer WHERE (email = :email OR login = :email) AND password = :password");
-		$statement->execute(array(':email' => $email, ':password' => md5($password)));
+		
+		$statement->execute(
+			array(
+				':email' => $email,
+				':password' => md5($password)
+			)
+		);
 
 		return (int) $statement->fetch()[0];
+	}
+
+	public function getId($email, $password)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"SELECT id_customer FROM customer 
+			WHERE (email = :email OR login = :email)AND password = :password"
+		);
+
+		$statement->execute(
+			array(
+				':email' => $email,
+				':password' => md5($password)
+			)
+		);
+
+		return $statement->fetch();
+	}
+
+	public function accountCreditTransaction($idGenerousCustomer, $idLuckyCustomer, $creditAmount)
+	{
+		try 
+		{  
+  			$this->dataBaseConnection->beginTransaction();
+  			
+  			$statement = $this->dataBaseConnection->prepare(
+			'UPDATE customer SET credit = '
+			);
+		    $statement->execute(
+				array(
+					':idCustomer' => $idGenerousCustomer
+				)
+			);
+
+		    $statement = $this->dataBaseConnection->prepare(
+			'UPDATE customer SET credit = '
+			);
+		    $statement->execute(
+				array(
+					':idCustomer' => $idLuckyCustomer
+				)
+			);
+
+			$this->dataBaseConnection->commit();
+		} 
+		catch (Exception $e) 
+		{
+			$this->dataBaseConnection->rollBack();
+		}
 	}
 }
