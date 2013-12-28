@@ -64,6 +64,14 @@ class UserConnectionController
 		}
 	}
 
+	public function customerStillSignedIn($mailControllerInstance)
+	{
+		if($this->checkCustomerData($this->sessionManager->getSessionVariable()) === true)
+		{
+			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+		}
+	}
+
 	public function handleUserDeconnection()
 	{
 		$this->sessionManager->endSession();
