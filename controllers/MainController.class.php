@@ -10,9 +10,10 @@ class MainController
     protected $initialContext;
 
     protected $userConnectionController;
+    protected $adminOnCustomerController;
+    protected $customerOnCustomerController;
     
     protected $twigTemplateVariablesArray;
-    protected $adminOnCustomerController;
 
     function __construct($initialContext)
     {
@@ -28,6 +29,8 @@ class MainController
         $this->adminOnCustomerController = new AdminOnCustomerController($this);
 
         $this->adminOnMovieController = new AdminOnMovieController($this, $initialContext);
+
+        $this->customerOnCustomerController = new CustomerOnCustomerController($this);
 
         $this->twigTemplateVariablesArray = array();
     }
@@ -116,12 +119,26 @@ class MainController
         return;
     }
 
+    public function customerOfferCredit($getData)
+    {
+        if(isset($getData['id'], $getData['amount']))
+        {
+            $this->customerOnCustomerController->offerCredit($getData['id'], $getData['amount']);   
+        }
+    }
+
+    // mixed controllers
     public function deconnectionListener($getData)
     {
         if(isset($getData['sign-out']))
         {
             $this->userConnectionController->handleUserDeconnection();
         }
+    }
+
+    public function customerStillSignedIn()
+    {
+        $this->userConnectionController->customerStillSignedIn($this);
     }
 
     // Admin controllers
