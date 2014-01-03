@@ -40,6 +40,7 @@ class CustomerOnCustomerController
     			$idLuckyCustomer,
     			$creditAmount
     		);
+            $this->mainController->addTwigTemplateVariables(array('notification' => 'Credit successfully offered!'));
         }
     }
 
