@@ -78,6 +78,22 @@ class Customer
 		return $statement->fetch();
 	}
 
+	public function getCustomerByLogin($loginCustomer)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"SELECT id_customer, login, lastname, firstname, email, credit FROM customer 
+			WHERE login LIKE :login"
+		);
+
+		$statement->execute(
+			array(
+				':login' => $loginCustomer
+			)
+		);
+
+		return $statement->fetchAll();
+	}
+
 	public function getAccountCredit($idCustomer)
 	{
 		return $this->getOneCustomer($idCustomer)['credit'];	

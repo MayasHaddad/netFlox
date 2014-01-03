@@ -1,16 +1,29 @@
 {% extends 'common/index.twig' %}
 {% block title %} Netflox is cooler with its O {% endblock %}
-{% block header %} {% endblock %}
+{% block header %}
+	{% include 'customer/customer-menu.twig' %}
+{% endblock %}
 
 {% block body %} 
-	{% if signUp %}
-		{% include 'customer/sign-up-form.twig' %}
+	{% if connected %}
+		{% if serchMovieForm %}
+			{% include 'movie/search-movie.twig' %}
+		{% endif %}	
+		{% if searchMovie %}
+			{% include 'movie/show-one-movie.twig' %}
+		{% endif %}
+		{% if searchCustomerForm %}
+			{% include 'customer/search-customer.twig' %}
+		{% endif %}
+		{% if showCustomers %}
+			{% include 'customer/show-customers.twig' %}
+		{% endif %}
 	{% else %}
-		<a href="index.php?sign-up"> inscrivez-vous </a>
-	{% endif %}
-	{% include 'movie/search-movie.twig' %}
-	{% if searchMovie %}
-		{% include 'movie/show-one-movie.twig' %}
+		{% if signUp %}
+			{% include 'customer/sign-up-form.twig' %}
+		{% else %}
+			<a href="index.php?sign-up"> inscrivez-vous </a>
+		{% endif %}
 	{% endif %}
 {% endblock %}
 

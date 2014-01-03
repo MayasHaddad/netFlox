@@ -119,14 +119,29 @@ class MainController
         return;
     }
 
-    public function customerOfferCredit($getData)
+    public function customerOfferCredit($postData)
     {
-        if(isset($getData['id'], $getData['amount']))
+        if(isset($postData['id-customer'], $postData['amount'], $postData['offer-credit']))
         {
-            $this->customerOnCustomerController->offerCredit($getData['id'], $getData['amount']);   
+            $this->customerOnCustomerController->offerCredit($postData['id-customer'], $postData['amount']);   
         }
     }
 
+    public function customerSearchCustomerForm($getData)
+    {
+        if(isset($getData['search-customer']))
+        {
+            $this->customerOnCustomerController->getSearchCustomerForm();
+        }
+    }
+
+    public function customerSeeCustomersByLogin($postData)
+    {
+        if(isset($postData['customerLogin'], $postData['searchCustomer']))
+        {
+            $this->customerOnCustomerController->showCustomerByLogin($postData['customerLogin']);
+        }
+    }
     // mixed controllers
     public function deconnectionListener($getData)
     {

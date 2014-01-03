@@ -1,0 +1,15 @@
+{% extends 'common/show-customers.twig' %}
+
+{% block customerManipulations %}
+<form name="input" action="#" method="post">
+	<ul class="">
+		<li class="">
+			<input type="text" name="amount">
+		</li>
+		<input type=hidden name="id-customer" value="{{ customer.id_customer }}" >
+		<li class="">
+			<input type="submit" name="offer-credit" value="offer credit">
+		</li>
+	</ul>
+</form>
+{% endblock %}

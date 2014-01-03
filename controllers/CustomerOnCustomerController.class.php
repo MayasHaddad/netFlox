@@ -42,4 +42,14 @@ class CustomerOnCustomerController
     		);
         }
     }
+
+    public function getSearchCustomerForm()
+    {
+    	$this->mainController->addTwigTemplateVariables(array('connected' => true, 'searchCustomerForm' => true));
+    }
+
+    public function showCustomerByLogin($login)
+    {   
+    	$this->mainController->addTwigTemplateVariables(array('connected' => true, 'showCustomers' => true, 'customers' => $this->customer->getCustomerByLogin($login)));	
+    }
 }

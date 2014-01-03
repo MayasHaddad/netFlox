@@ -1,0 +1,15 @@
+{% for customer in customers %}
+<ul class="">
+	<li class="">
+		{{ customer.lastname }}
+	</li>
+	<li class="">
+		{{ customer.firstname }}
+	</li>
+	{% block adminManipulations %}
+	{% endblock %}
+</ul>
+{% block customerManipulations %}
+{% endblock %}
+------------------------------------------------
+{% endfor %}

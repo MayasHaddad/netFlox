@@ -1,17 +1,10 @@
-{% for customer in customers %}
-<ul class="">
-	<li class="">
-		{{ customer.lastname }}
-	</li>
-	<li class="">
-		{{ customer.firstname }}
-	</li>
+{% extends 'common/show-customers.twig' %}
+
+{% block adminManipulations %}
 	<li class="">
 		<a href="index.php?remove-customer&id-customer={{ customer.id_customer }}">Supprimer</a>
 	</li>
 	<li class="">
 		<a href="index.php?see-one-customer&id-customer={{ customer.id_customer }}">Modifier</a>
 	</li>
-</ul>
-------------------------------------------------
-{% endfor %}
+{% endblock %}
