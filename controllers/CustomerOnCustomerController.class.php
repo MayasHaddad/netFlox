@@ -45,11 +45,17 @@ class CustomerOnCustomerController
 
     public function getSearchCustomerForm()
     {
-    	$this->mainController->addTwigTemplateVariables(array('connected' => true, 'searchCustomerForm' => true));
+        if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))
+        {
+            $this->mainController->addTwigTemplateVariables(array('connected' => true, 'searchCustomerForm' => true));   
+        }
     }
 
     public function showCustomerByLogin($login)
     {   
-    	$this->mainController->addTwigTemplateVariables(array('connected' => true, 'showCustomers' => true, 'customers' => $this->customer->getCustomerByLogin($login)));	
+        if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))
+        {
+    	   $this->mainController->addTwigTemplateVariables(array('connected' => true, 'showCustomers' => true, 'customers' => $this->customer->getCustomerByLogin($login)));
+        }	
     }
 }
