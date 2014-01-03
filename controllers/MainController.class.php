@@ -23,7 +23,7 @@ class MainController
         
         $this->loader = new Twig_Loader_Filesystem($this->initialContext . 'templates'); // directory which contains the template files
         $this->twigInstance = new Twig_Environment($this->loader, array('cache' => false));
-        
+
         $this->userConnectionController = new UserConnectionController();
 
         $this->adminOnCustomerController = new AdminOnCustomerController($this);
@@ -33,6 +33,8 @@ class MainController
         $this->customerOnCustomerController = new CustomerOnCustomerController($this);
 
         $this->twigTemplateVariablesArray = array();
+
+        $this->addTwigTemplateVariables(array('initialContext' => $initialContext));
     }
 
     public function setTwigTemplateVariables($twigTemplateVariablesArray)
