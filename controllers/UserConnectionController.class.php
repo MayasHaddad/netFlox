@@ -53,7 +53,10 @@ class UserConnectionController
 			$this->sessionManager->newOrResetSession($postedData);
 
 			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
+
+			return;
 		}
+		$mailControllerInstance->addTwigTemplateVariables(array('error' => 'Unable to authentificate'));
 	}
 
 	public function adminStillSignedIn($mailControllerInstance)
