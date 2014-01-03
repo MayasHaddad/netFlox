@@ -1,4 +1,9 @@
 .notification
 {
-	background-color: rgb(51,255,153);
+	background-color: rgb(51, 255, 153);
+}
+
+.error
+{
+	background-color: rgb(255, 51, 51);	
 }

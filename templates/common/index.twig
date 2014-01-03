@@ -14,6 +14,10 @@
 		{% include 'common/notification.twig' %}
 	{% endif %}
 
+	{% if error %}
+		{% include 'common/error.twig' %}
+	{% endif %}
+    
     {% block body %} {% endblock %}
     {% block footer %} {% endblock %}
 </body>
