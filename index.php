@@ -24,4 +24,6 @@ $mainController->customerSearchCustomerForm($_GET);
 
 $mainController->customerSeeCustomersByLogin($_POST);
 
+$mainController->deconnectionListener($_GET);
+
 $mainController->render("index");
