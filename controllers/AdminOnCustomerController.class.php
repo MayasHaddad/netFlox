@@ -51,7 +51,7 @@ class AdminOnCustomerController
         {
             $this->customer->removeCustomer($idCustomer);
 
-            $this->mainController->addTwigTemlateVariables(
+            $this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true, 'notification' => 'Customer successfully deleted !', 'customers' => $this->customer->getAllCustomers()
                 )
@@ -77,7 +77,7 @@ class AdminOnCustomerController
         {
             $this->customer->updateCustomer($idCustomer, $newCustomerData);
 
-            $this->mainController->addTwigTemlateVariables(
+            $this->mainController->addTwigTemplateVariables(
                 array(
                     'connected' => true, 'notification' => 'Customer successfully updated !', 'customers' => $this->customer->getAllCustomers()
                 )
