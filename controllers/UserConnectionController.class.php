@@ -42,7 +42,7 @@ class UserConnectionController
 		{
 			$this->sessionManager->newOrResetSession($postedData);
 
-			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
+			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
 		}
 	}
 
@@ -52,7 +52,7 @@ class UserConnectionController
 		{
 			$this->sessionManager->newOrResetSession($postedData);
 
-			$mailControllerInstance->setTwigTemplateVariables(array('connected' => true));
+			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
 
 			return;
 		}
