@@ -7,9 +7,9 @@
 	    <link rel="stylesheet" href="{{initialContext}}styles/entry-banner.css">
 	</head>
 	<body>
+		{% include 'common/entry-banner.twig' %}
+	
 	    {% if not(connected) %}
-			{% include 'common/entry-banner.twig' %}
-
 			{% include 'common/sign-in-form.twig' %}
 		{% endif %}
 	    

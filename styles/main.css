@@ -2,3 +2,26 @@ body
 {
 	margin: 0px;
 }
+
+#sign-in-form-container
+{
+	margin: 0px;
+	float: right;
+}
+
+#sign-in-form
+{
+
+}
+
+#sign-in-list
+{
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+
+.sign-in-list-elements
+{
+	display: inline;
+}
