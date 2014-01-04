@@ -1,9 +1,11 @@
 {% if connected %}
-<ul class="">
-	<li class="">
-		<a href="index.php?sign-out"> Déconnexion </a>
+<div id="signed-in-menu-container">
+<ul id="signed-in-menu-list">
+	<li class="signed-in-menu-item">
+		<a href="index.php?sign-out" class="menu-link"> Déconnexion </a>
 	</li>
 	
 	{% block menuItems %} {% endblock %}
 </ul>
+</div>
 {% endif %}

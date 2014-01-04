@@ -25,3 +25,22 @@ body
 {
 	display: inline;
 }
+
+#signed-in-menu-container
+{
+}
+
+#signed-in-menu-list
+{
+	
+}
+
+.signed-in-menu-item
+{
+	display: inline;
+}
+
+.menu-link
+{
+	text-decoration: none;
+}
