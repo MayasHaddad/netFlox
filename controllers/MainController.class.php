@@ -37,7 +37,7 @@ class MainController
         $this->addTwigTemplateVariables(array('initialContext' => $initialContext));
     }
 
-    public function setTwigTemplateVariables($twigTemplateVariablesArray)
+    private function setTwigTemplateVariables($twigTemplateVariablesArray)
     {
         $this->twigTemplateVariablesArray = $twigTemplateVariablesArray;
     }
@@ -79,7 +79,7 @@ class MainController
     {
         if(isset($getData['sign-up'])){
             
-            $this->setTwigTemplateVariables(array('signUp' => true));
+            $this->addTwigTemplateVariables(array('signUp' => true));
             
             $this->adminOnCustomerController->addACustomerForm();
         }
@@ -248,7 +248,7 @@ class MainController
 				$movieName = $movieEngine->getMovieByName(
 					$postData['movieName']
 					);
-				$this->setTwigTemplateVariables($movieName);
+				$this->addTwigTemplateVariables($movieName);
 				}
 				catch(Exception $e){echo "Le Film n'exste pas";}
 			}	
