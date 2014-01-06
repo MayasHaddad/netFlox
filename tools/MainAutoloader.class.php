@@ -23,6 +23,7 @@ class MainAutoloader
 			'AdminOnCustomerController.class',
                         'CustomerOnCustomerController.class',
                         'AdminOnMovieController.class',
+                        'PdfManager.class',
                         'fpdf'
                 );
                 
