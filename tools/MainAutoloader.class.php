@@ -22,7 +22,8 @@ class MainAutoloader
 			'UserConnectionController.class',
 			'AdminOnCustomerController.class',
                         'CustomerOnCustomerController.class',
-                        'AdminOnMovieController.class'
+                        'AdminOnMovieController.class',
+                        'fpdf'
                 );
                 
                 array_walk($classes, 'MainAutoLoader::performRequire');
@@ -39,6 +40,12 @@ class MainAutoloader
                 if(file_exists(MainAutoLoader::$initialContext . 'tools/twig/Twig-1.14.2/lib/Twig/' . $className . '.php'))
                 {
                         require_once(MainAutoLoader::$initialContext . 'tools/twig/Twig-1.14.2/lib/Twig/' . $className . '.php');
+                        return;
+                }
+
+                if(file_exists(MainAutoLoader::$initialContext . 'tools/fpdf/' . $className . '.php'))
+                {                        
+                        require_once(MainAutoLoader::$initialContext . 'tools/fpdf/' . $className . '.php');
                         return;
                 }
 
