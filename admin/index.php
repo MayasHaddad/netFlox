@@ -28,6 +28,8 @@ $mainController->addNewMovieForm($_GET);
 
 $mainController->addNewMovie($_POST, $initialContext);
 
+$mainController->adminAuditStatsListenner($_GET);
+
 $mainController->deconnectionListener($_GET);
 
 $mainController->adminStillSignedIn();

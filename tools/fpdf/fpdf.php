@@ -167,6 +167,27 @@ function FPDF($orientation='P', $unit='mm', $size='A4')
 	$this->PDFVersion = '1.3';
 }
 
+
+// Tableau simple
+function BasicTable($header, $data)
+{
+    // En-tête
+    foreach($header as $col)
+        $this->Cell(40,7,$col,1);
+    $this->Ln();
+    // Données
+    foreach($data as $row)
+    {
+    	// ATTENTION CODE DUR
+            $this->Cell(40,6,$row['firstname'],1);
+            $this->Cell(40,6,$row['lastname'],1);
+            $this->Cell(40,6,$row['login'],1);
+            $this->Cell(40,6,$row['email'],1);
+            $this->Cell(40,6,$row['credit'],1);
+        $this->Ln();
+    }
+}
+
 function SetMargins($left, $top, $right=null)
 {
 	// Set left, top and right margins

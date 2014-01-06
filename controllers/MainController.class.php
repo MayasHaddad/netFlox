@@ -11,8 +11,9 @@ class MainController
 
     protected $userConnectionController;
     protected $adminOnCustomerController;
+    protected $adminOnStatisticsController;
+
     protected $customerOnCustomerController;
-    
     protected $twigTemplateVariablesArray;
 
     function __construct($initialContext)
@@ -29,7 +30,9 @@ class MainController
         $this->adminOnCustomerController = new AdminOnCustomerController($this);
 
         $this->adminOnMovieController = new AdminOnMovieController($this, $initialContext);
-
+        
+        $this->adminOnStatisticsController = new AdminOnStatisticsController();
+        
         $this->customerOnCustomerController = new CustomerOnCustomerController($this);
 
         $this->twigTemplateVariablesArray = array();
@@ -206,6 +209,13 @@ class MainController
         }
     }
 
+    public function adminAuditStatsListenner($getData)
+    {
+        if(isset($getData['audit']))
+        {
+            $this->adminOnStatisticsController->getAuditStatistics(); 
+        }
+    }
 	//Movie controllers
 	
     public function addNewMovieForm($getData)

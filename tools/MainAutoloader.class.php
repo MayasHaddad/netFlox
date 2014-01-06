@@ -24,6 +24,7 @@ class MainAutoloader
                         'CustomerOnCustomerController.class',
                         'AdminOnMovieController.class',
                         'PdfManager.class',
+                        'AdminOnStatisticsController.class',
                         'fpdf'
                 );
                 
@@ -35,6 +36,12 @@ class MainAutoloader
                 if(file_exists($className . '.php'))
                 {
                         require_once($className . '.php');
+                        return;
+                }
+
+                if(file_exists(MainAutoLoader::$initialContext . 'tools/' . $className . '.php'))
+                {
+                        require_once(MainAutoLoader::$initialContext . 'tools/' . $className . '.php');
                         return;
                 }
 

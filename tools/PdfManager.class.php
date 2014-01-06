@@ -7,15 +7,16 @@ class PdfManager
 {
     function __construct()
     {
-        
+
     }
 
-    public function getPdf($contentString)
+    public function getPdf($header, $data)
     {
         $pdf = new FPDF();
         $pdf->AddPage();
-        $pdf->SetFont('Arial','B',12);
-        $pdf->Cell(40, 10, $contentString);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->BasicTable($header, $data);
+        //$pdf->Cell(40, 10, $contentString);
         $pdf->Output();   
     }
 }
