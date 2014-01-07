@@ -14,7 +14,7 @@ class MovieEngine
 		$this->XPathTree = new DOMXPath($this->movieTree);		
 	}
 	
-	public function addMovie($titre, $jour, $mois, $annee, $description, $acteur, $realisateur)
+	public function addMovie($titre, $jour, $mois, $annee, $description, $acteur, $realisateur, $price, $priceRent)
 	{
 		$racine = $this->movieTree->getElementsByTagName('movies');
 		$movies = $racine->item(0);
@@ -28,6 +28,8 @@ class MovieEngine
 		$describe = $this->movieTree->createElement('description', $description);
 		$actor = $this->movieTree->createElement('actor', $acteur);
 		$director = $this->movieTree->createElement('director', $realisateur);
+		$price = $this->movieTree->createElement('price', $price);
+		$priceRent = $this->movieTree->createElement('priceRent', $priceRent);
 		
 		$dateDeSortie->appendChild($jourr);
 		$dateDeSortie->appendChild($moiss);
@@ -38,6 +40,8 @@ class MovieEngine
 		$movie->appendChild($describe);
 		$movie->appendChild($actor);
 		$movie->appendChild($director);
+		$movie->appendChild($price);
+		$movie->appendChild($priceRent);
 		
 		$idManager = new IdManager();
 		$movies->appendChild($movie)->setAttribute('id', 't' . $idManager->getId());
@@ -97,9 +101,25 @@ class MovieEngine
 			else if ($nom == 'date')
 			{
 				$date = $enfant->nodeValue;
+			}
+			else if ($nom == 'pice')
+			{
+				$price = $enfant->nodeValue;
+			}
+			else if ($nom == 'priceRent')
+			{
+				$priceRent = $enfant->nodeValue;
 			}			
 		}
-		return array('searchMovie' => true, 'title' => $titre, 'description' => $description, 'actors' => $acteur, 'directors' => $realisateur, 'date' => $date);
+		return array('searchMovie' => true, 
+			'title' => $titre, 
+			'description' => $description, 
+			'actors' => $acteur, 
+			'directors' => $realisateur, 
+			'date' => $date, 
+			'price' => $price, 
+			'priceRent' => $priceRent
+		);
 	
 	}
 	

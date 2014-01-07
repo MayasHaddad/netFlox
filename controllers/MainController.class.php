@@ -235,7 +235,9 @@ class MainController
 						$postData['year'], 
 						$postData['description'], 
 						$postData['actor'], 
-						$postData['director']
+						$postData['director'],
+                        $postData['price'],
+                        $postData['priceRent']
 				)
 			) {
 				$movieEngine = new MovieEngine($initialContext);
@@ -246,7 +248,9 @@ class MainController
 					$postData['year'], 
 					$postData['description'], 
 					$postData['actor'],
-					$postData['director']);
+					$postData['director'],
+                    $postData['price'],
+                    $postData['priceRent']);
 			}
 	}
 	
