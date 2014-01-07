@@ -258,9 +258,18 @@ class MainController
 				$movieName = $movieEngine->getMovieByName(
 					$postData['movieName']
 					);
-				$this->addTwigTemplateVariables($movieName);
+				    $this->addTwigTemplateVariables($movieName);
+                    $this->addTwigTemplateVariables(array('searchMovie' => true));
 				}
 				catch(Exception $e){echo "Le Film n'exste pas";}
 			}	
 	}
+
+    public function searchMovieForm($getData)
+    {
+        if(isset($getData['search-movie']))
+        {
+            $this->addTwigTemplateVariables(array('searchMovieForm' => true));
+        }
+    }
 }

@@ -22,6 +22,10 @@ $mainController->customerSearchCustomerForm($_GET);
 
 $mainController->customerSeeCustomersByLogin($_POST);
 
+$mainController->searchMovieForm($_GET);
+
+$mainController->searchOneMovieByName($_POST, $initialContext);
+
 $mainController->deconnectionListener($_GET);
 
 $mainController->customerStillSignedIn();
