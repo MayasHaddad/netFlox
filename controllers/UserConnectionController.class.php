@@ -36,42 +36,42 @@ class UserConnectionController
     	return false;
     }
 
-	public function handleAdminConnection($postedData, $mailControllerInstance)
+	public function handleAdminConnection($postedData, $mainControllerInstance)
 	{
 		if($this->checkAdminData($postedData) === true)
 		{
 			$this->sessionManager->newOrResetSession($postedData);
 
-			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+			$mainControllerInstance->addTwigTemplateVariables(array('connected' => true));
 		}
 	}
 
-	public function handleCustomerConnection($postedData, $mailControllerInstance)
+	public function handleCustomerConnection($postedData, $mainControllerInstance)
 	{
 		if($this->checkCustomerData($postedData) === true)
 		{
 			$this->sessionManager->newOrResetSession($postedData);
 
-			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+			$mainControllerInstance->addTwigTemplateVariables(array('connected' => true));
 
 			return;
 		}
-		$mailControllerInstance->addTwigTemplateVariables(array('error' => 'Unable to authentificate'));
+		$mainControllerInstance->addTwigTemplateVariables(array('error' => 'Unable to authentificate'));
 	}
 
-	public function adminStillSignedIn($mailControllerInstance)
+	public function adminStillSignedIn($mainControllerInstance)
 	{
 		if($this->checkAdminData($this->sessionManager->getSessionVariable()) === true)
 		{
-			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+			$mainControllerInstance->addTwigTemplateVariables(array('connected' => true));
 		}
 	}
 
-	public function customerStillSignedIn($mailControllerInstance)
+	public function customerStillSignedIn($mainControllerInstance)
 	{
 		if($this->checkCustomerData($this->sessionManager->getSessionVariable()) === true)
 		{
-			$mailControllerInstance->addTwigTemplateVariables(array('connected' => true));
+			$mainControllerInstance->addTwigTemplateVariables(array('connected' => true));
 		}
 	}
 
