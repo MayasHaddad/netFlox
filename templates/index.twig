@@ -18,6 +18,9 @@
 		{% if showCustomers %}
 			{% include 'customer/show-customers.twig' %}
 		{% endif %}
+		{% if customer %}
+			{% include 'admin/update-customer-data-form.twig' %}
+		{% endif %}
 	{% else %}
 		{% if signUp %}
 			{% include 'customer/sign-up-form.twig' %}

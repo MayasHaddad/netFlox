@@ -28,6 +28,8 @@ $mainController->searchMovieForm($_GET);
 
 $mainController->searchOneMovieByName($_POST, $initialContext);
 
+$mainController->customerUpdateMyProfile($_GET);
+
 $mainController->deconnectionListener($_GET);
 
 $mainController->customerStillSignedIn();

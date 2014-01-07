@@ -159,6 +159,14 @@ class MainController
            $this->customerOnMovieController->buyMovie($getData['id-movie'], $getData['price']);
         }
     }
+
+    public function customerUpdateMyProfile($getData)
+    {
+        if(isset($getData['update-profile']))
+        {
+           $this->customerOnCustomerController->printMyDataCustomer();
+        }
+    }
     // mixed controllers
     public function deconnectionListener($getData)
     {

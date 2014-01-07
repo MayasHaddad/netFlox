@@ -21,13 +21,18 @@ class CustomerOnCustomerController
         $this->mainController = $mainController;
     }
 
+    public function getMyId()
+    {
+        return $this->customer->getId(
+            $this->session->getSessionVariable('email'),
+            $this->session->getSessionVariable('password')
+        )[0];
+    }
+
     public function offerCredit($idLuckyCustomer, $creditAmount)
     {
-    	$idGenerousCustomer = $this->customer->getId(
-	    	$this->session->getSessionVariable('email'),
-	    	$this->session->getSessionVariable('password')
-	    )[0];
-
+    	$idGenerousCustomer = $this->getMyId();
+        
     	if
     	(
     		$this->userConnectionController->checkCustomerData($this->session->getSessionVariable())
@@ -58,5 +63,17 @@ class CustomerOnCustomerController
         {
     	   $this->mainController->addTwigTemplateVariables(array('connected' => true, 'showCustomers' => true, 'customers' => $this->customer->getCustomerByLogin($login)));
         }	
+    }
+
+    public function printMyDataCustomer()
+    {
+        if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))
+        {
+            $this->mainController->addTwigTemplateVariables(
+                array(
+                    'connected' => true, 'customer' => $this->customer->getOneCustomer($this->getMyId())
+                )
+            );
+        }
     }
 }
