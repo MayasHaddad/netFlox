@@ -25,6 +25,7 @@ class MainAutoloader
                         'AdminOnMovieController.class',
                         'PdfManager.class',
                         'AdminOnStatisticsController.class',
+                        'IdManager.class',
                         'fpdf'
                 );
                 

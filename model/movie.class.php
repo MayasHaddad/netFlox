@@ -39,7 +39,8 @@ class MovieEngine
 		$movie->appendChild($actor);
 		$movie->appendChild($director);
 		
-		$movies->appendChild($movie);
+		$idManager = new IdManager();
+		$movies->appendChild($movie)->setAttribute('id', 't' . $idManager->getId());
 		
 		$this->movieTree->save($this->pathToMovieData);	
 	}
