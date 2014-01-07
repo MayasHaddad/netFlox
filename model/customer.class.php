@@ -135,31 +135,43 @@ class Customer
 		return $statement->fetch();
 	}
 
+	public function retrieveFromAccount($idCustomer, $amount)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			'UPDATE customer SET credit = credit - :creditAmount WHERE id_customer = :idCustomer'
+		);
+
+	    $statement->execute(
+			array(
+				':idCustomer' => $idCustomer,
+				':creditAmount' => $amount
+			)
+		);
+	}
+
+	public function addToAccount($idCustomer, $amount)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			'UPDATE customer SET credit = credit + :creditAmount WHERE id_customer = :idCustomer'
+		);
+		    
+
+		$statement->execute(
+			array(
+				':idCustomer' => $idCustomer,
+				':creditAmount' => $amount
+			)
+		);
+	}
 	public function accountCreditTransaction($idGenerousCustomer, $idLuckyCustomer, $creditAmount)
 	{
 		try 
 		{  
   			$this->dataBaseConnection->beginTransaction();
   			
-  			$statement = $this->dataBaseConnection->prepare(
-			'UPDATE customer SET credit = credit - :creditAmount WHERE id_customer = :idCustomer'
-			);
-		    $statement->execute(
-				array(
-					':idCustomer' => $idGenerousCustomer,
-					':creditAmount' => $creditAmount
-				)
-			);
-
-		    $statement = $this->dataBaseConnection->prepare(
-			'UPDATE customer SET credit = credit + :creditAmount WHERE id_customer = :idCustomer'
-			);
-		    $statement->execute(
-				array(
-					':idCustomer' => $idLuckyCustomer,
-					':creditAmount' => $creditAmount
-				)
-			);
+  			$this->retrieveFromAccount($idGenerousCustomer, $creditAmount);
+		    
+  			$this->addToAccount($idLuckyCustomer, $creditAmount);
 
 			$this->dataBaseConnection->commit();
 		} 

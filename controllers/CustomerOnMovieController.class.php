@@ -26,17 +26,23 @@ class CustomerOnMovieController
 
     public function buyMovie($idMovie, $price)
     {
-        if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))
+        $customerData = $this->customer->getCustomerByLogin($this->session->getSessionVariable('email'))[0];
+            
+        if(
+            $this->userConnectionController->checkCustomerData($this->session->getSessionVariable())
+            &&
+            $customerData['credit'] >= $price
+            )
         {
-            $firstCustomer = $this->customer->getCustomerByLogin($this->session->getSessionVariable('email'))[0];
-            $idCustomer = $firstCustomer['id_customer'];
+            $idCustomer = $customerData['id_customer'];
 
            if($this->customer->buyMovie($idCustomer, $idMovie, $price) === true)
            {
                 $this->mainController->addTwigTemplateVariables(array('notification' => 'You have successfully bought this movie!'));
+                $this->customer->retrieveFromAccount($idCustomer, $price); 
                 return;
            }
         }
-        $this->mainController->addTwigTemplateVariables(array('error' => 'Couldn\'t buy this movie, maybe you own it already!'));
+        $this->mainController->addTwigTemplateVariables(array('error' => 'Couldn\'t buy this movie, maybe you own it already, or you don\'t have enough credit'));
     }
 }
