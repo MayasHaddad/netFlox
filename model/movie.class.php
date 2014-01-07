@@ -73,6 +73,7 @@ class MovieEngine
 	{
 		$node = $movieNode->item(0);
 		$enfants = $node->childNodes;	
+		$idMovie = $node->getAttribute('id');
 		$titre='';
 		$description='';
 		$acteur='';
@@ -102,7 +103,7 @@ class MovieEngine
 			{
 				$date = $enfant->nodeValue;
 			}
-			else if ($nom == 'pice')
+			else if ($nom == 'price')
 			{
 				$price = $enfant->nodeValue;
 			}
@@ -118,7 +119,8 @@ class MovieEngine
 			'directors' => $realisateur, 
 			'date' => $date, 
 			'price' => $price, 
-			'priceRent' => $priceRent
+			'priceRent' => $priceRent,
+			'idMovie' => $idMovie
 		);
 	
 	}

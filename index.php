@@ -22,6 +22,8 @@ $mainController->customerSearchCustomerForm($_GET);
 
 $mainController->customerSeeCustomersByLogin($_POST);
 
+$mainController->customerBuyMovie($_GET);
+
 $mainController->searchMovieForm($_GET);
 
 $mainController->searchOneMovieByName($_POST, $initialContext);

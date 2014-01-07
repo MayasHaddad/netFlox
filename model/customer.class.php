@@ -168,4 +168,17 @@ class Customer
 			$this->dataBaseConnection->rollBack();
 		}
 	}
+
+	public function buyMovie($idCustomer, $idMovie, $price)
+	{
+		$statement = $this->dataBaseConnection->prepare("INSERT INTO movie_buy_transaction VALUES (:id_customer, :id_movie, now(), :price)");
+		
+		return $statement->execute(
+			array(
+				':id_customer' => $idCustomer,
+				':id_movie' => $idMovie,
+				':price' => $price
+			)
+		);
+	}
 }

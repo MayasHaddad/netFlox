@@ -14,6 +14,8 @@ class MainController
     protected $adminOnStatisticsController;
 
     protected $customerOnCustomerController;
+    protected $customerOnMovieController;
+
     protected $twigTemplateVariablesArray;
 
     function __construct($initialContext)
@@ -34,6 +36,8 @@ class MainController
         $this->adminOnStatisticsController = new AdminOnStatisticsController();
         
         $this->customerOnCustomerController = new CustomerOnCustomerController($this);
+
+        $this->customerOnMovieController = new CustomerOnMovieController($this, $initialContext);
 
         $this->twigTemplateVariablesArray = array();
 
@@ -145,6 +149,14 @@ class MainController
         if(isset($postData['customerLogin'], $postData['searchCustomer']))
         {
             $this->customerOnCustomerController->showCustomerByLogin($postData['customerLogin']);
+        }
+    }
+
+    public function customerBuyMovie($getData)
+    {
+        if(isset($getData['buy-movie'], $getData['id-movie'], $getData['price']))
+        {
+           $this->customerOnMovieController->buyMovie($getData['id-movie'], $getData['price']);
         }
     }
     // mixed controllers

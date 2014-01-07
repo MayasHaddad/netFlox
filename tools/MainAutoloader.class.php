@@ -22,6 +22,7 @@ class MainAutoloader
 			'UserConnectionController.class',
 			'AdminOnCustomerController.class',
                         'CustomerOnCustomerController.class',
+                        'CustomerOnMovieController.class',
                         'AdminOnMovieController.class',
                         'PdfManager.class',
                         'AdminOnStatisticsController.class',
