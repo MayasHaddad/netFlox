@@ -28,7 +28,9 @@ $mainController->addNewMovieForm($_GET);
 
 $mainController->addNewMovie($_POST, $initialContext);
 
-$mainController->adminAuditStatsListenner($_GET);
+$mainController->adminAuditStatsFormListenner($_GET);
+
+$mainController->adminAuditStatsListenner($_POST);
 
 $mainController->deconnectionListener($_GET);
 

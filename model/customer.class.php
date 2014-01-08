@@ -1,6 +1,6 @@
 <?php
 /**
-* This model is responsible of admin data management (using PDO)
+* This model is responsible of customer data management (using PDO)
 * @author Mayas Haddad
 */
 class Customer
@@ -163,18 +163,19 @@ class Customer
 			)
 		);
 	}
+
 	public function accountCreditTransaction($idGenerousCustomer, $idLuckyCustomer, $creditAmount)
 	{
 		try 
-		{  
+		{
   			$this->dataBaseConnection->beginTransaction();
-  			
+
   			$this->retrieveFromAccount($idGenerousCustomer, $creditAmount);
 		    
   			$this->addToAccount($idLuckyCustomer, $creditAmount);
 
 			$this->dataBaseConnection->commit();
-		} 
+		}
 		catch (Exception $e) 
 		{
 			$this->dataBaseConnection->rollBack();

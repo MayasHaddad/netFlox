@@ -229,11 +229,19 @@ class MainController
         }
     }
 
-    public function adminAuditStatsListenner($getData)
+    public function adminAuditStatsListenner($postedData)
+    {
+        if(isset($postedData['get-audit'], $postedData['period']))
+        {
+            $this->adminOnStatisticsController->getAuditStatistics($postedData['period']); 
+        }
+    }
+
+    public function adminAuditStatsFormListenner($getData)
     {
         if(isset($getData['audit']))
         {
-            $this->adminOnStatisticsController->getAuditStatistics(); 
+            $this->addTwigTemplateVariables(array('auditForm' => true));
         }
     }
 	//Movie controllers

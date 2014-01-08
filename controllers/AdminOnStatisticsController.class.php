@@ -9,6 +9,7 @@ class AdminOnStatisticsController
     protected $session;
     protected $pdfManager;
     protected $customer;
+    protected $transaction;
 
 	function __construct()
     {
@@ -19,16 +20,18 @@ class AdminOnStatisticsController
         $this->pdfManager = new PdfManager();
 
         $this->customer = new Customer();
+
+        $this->transaction = new Transaction();
     }
 
-    public function getAuditStatistics()
+    public function getAuditStatistics($period)
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
         	$outputStat = '';
         	$header = array('firstname', 'lastname', 'login', 'email', 'credit');
         	$data = $this->customer->getAllCustomers();
-        	$this->pdfManager->getPdf($header, $data);
+        	$this->pdfManager->getAuditPdf($header, $data, $period, $this->transaction->getTurnoverOnTransactions($period));
         }
     }
 }

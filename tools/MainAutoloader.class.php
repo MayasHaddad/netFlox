@@ -17,6 +17,7 @@ class MainAutoloader
                         'DatabaseManager.class',
                         'Admin.class',
                         'Customer.class',
+                        'Transaction.class',
                         'UserConnectionController.class',
 			'movie.class',	
 			'UserConnectionController.class',
