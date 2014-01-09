@@ -34,4 +34,20 @@ class AdminOnStatisticsController
         	$this->pdfManager->getAuditPdf($header, $data, $period, $this->transaction->getTurnoverOnTransactions($period));
         }
     }
+
+    public function getCatalogueStatistics($movieEngine)
+    {
+        if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
+        {
+            $header = array('title', 
+            'description', 
+            'actors', 
+            'directors', 
+            'date', 
+            'price', 
+            'priceRent',
+            'idMovie');
+            $this->pdfManager->getCataloguePdf($header, $movieEngine->getAllMovies());
+        }
+    }
 }

@@ -10,6 +10,14 @@ class PdfManager
 
     }
 
+     public function getCataloguePdf($header, $moviesData)
+    {
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',10);
+        $pdf->BasicTable($header, $moviesData);
+        $pdf->Output();   
+    }
     public function getAuditPdf($header, $customerData, $period, $turnover)
     {
         $pdf = new FPDF();

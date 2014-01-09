@@ -244,6 +244,14 @@ class MainController
             $this->addTwigTemplateVariables(array('auditForm' => true));
         }
     }
+
+    public function adminCatalogueStatsListenner($getData, $initialContext)
+    {
+        if(isset($getData['catalogue']))
+        {
+            $this->adminOnStatisticsController->getCatalogueStatistics(new MovieEngine($initialContext));   
+        }
+    }
 	//Movie controllers
 	
     public function addNewMovieForm($getData)

@@ -69,9 +69,40 @@ class MovieEngine
 		return $explodedMovie;
 	}
 	
-	public function explodeMovie($movieNode)
+	public function getAllMovies()
 	{
-		$node = $movieNode->item(0);
+		$query = '//movie';		
+		$result = $this->XPathTree->query($query);
+		$explodedMovie = $this->explodeSetOfMovies($result);
+		return $explodedMovie;
+	}
+
+	public function explodeSetOfMovies($setMovies)
+	{
+		$arrayOfMovies = array();
+		$rank = 0;
+		$movieArray = array();
+		
+		foreach ($setMovies as $key => $movie)
+		{
+
+			$movieExploded = $this->explodeMovie($setMovies, $rank);
+			foreach ($movieExploded as $keyOfMovieField => $movieFieldValue) 
+			{
+				if($keyOfMovieField !== 'searchMovie')
+				{
+					$movieArray[$keyOfMovieField] = $movieFieldValue;
+				}
+			}
+			$arrayOfMovies[$rank] = $movieArray;
+			$rank++;
+		}
+		return $arrayOfMovies;
+	}
+
+	public function explodeMovie($movieNode, $rank = 0)
+	{
+		$node = $movieNode->item($rank);
 		$enfants = $node->childNodes;	
 		$idMovie = $node->getAttribute('id');
 		$titre='';

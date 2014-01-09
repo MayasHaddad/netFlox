@@ -179,11 +179,9 @@ function BasicTable($header, $data)
     foreach($data as $row)
     {
     	// ATTENTION CODE DUR
-            $this->Cell(40,6,$row['firstname'],1);
-            $this->Cell(40,6,$row['lastname'],1);
-            $this->Cell(40,6,$row['login'],1);
-            $this->Cell(40,6,$row['email'],1);
-            $this->Cell(40,6,$row['credit'],1);
+    	foreach ($row as $key => $case) {
+            $this->Cell(40,6,$case,1);
+    	}
         $this->Ln();
     }
 }

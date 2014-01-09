@@ -32,6 +32,8 @@ $mainController->adminAuditStatsFormListenner($_GET);
 
 $mainController->adminAuditStatsListenner($_POST);
 
+$mainController->adminCatalogueStatsListenner($_GET, $initialContext);
+
 $mainController->deconnectionListener($_GET);
 
 $mainController->adminStillSignedIn();
