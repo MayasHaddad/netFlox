@@ -8,6 +8,7 @@ body
 	height: 80%;
 	background-color: rgb(224,224,224);
 }
+
 #sign-in-form-container
 {
 	margin: 0px;
@@ -37,7 +38,7 @@ body
 
 #signed-in-menu-list
 {
-	
+	margin: 0px;
 }
 
 .signed-in-menu-item
@@ -53,4 +54,5 @@ body
 .menu-list
 {
 	list-style-type: none;
+	margin: 0px;
 }

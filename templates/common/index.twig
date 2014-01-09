@@ -13,9 +13,11 @@
 	    {% if not(connected) %}
 			{% include 'common/sign-in-form.twig' %}
 		{% endif %}
-	    
+
+	    <div id="header">
 	    {% block header %} {% endblock %}
-	        	
+	    </div>
+	    
 	    {% if notification %}
 			{% include 'common/notification.twig' %}
 		{% endif %}
