@@ -317,17 +317,25 @@ class MainController
 	
 	public function searchOneMovieByName($postData, $initialContext)
 	{
-		if(isset($postData['movieName'])) {
-				$movieEngine = new MovieEngine($initialContext);
-				try{
-				$movieName = $movieEngine->getMovieByName(
-					$postData['movieName']
-					);
-				    $this->addTwigTemplateVariables($movieName);
-                    $this->addTwigTemplateVariables(array('searchMovie' => true));
-				}
-				catch(Exception $e){echo "Le Film n'exste pas";}
-			}	
+		if(isset($postData['movieName'])) 
+        {
+            if($postData['movieName'] === '')
+            {
+                return;
+            }
+
+			$movieEngine = new MovieEngine($initialContext);
+			$movieName = $movieEngine->getMovieByName(
+				$postData['movieName']
+			);
+            if($movieName === false)
+            {
+                $this->addTwigTemplateVariables(array('error' => 'No matching movie!'));
+                return;   
+            }
+			$this->addTwigTemplateVariables($movieName);
+            $this->addTwigTemplateVariables(array('searchMovie' => true));
+		}
 	}
 
     public function searchMovieForm($getData)

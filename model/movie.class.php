@@ -103,6 +103,10 @@ class MovieEngine
 	public function explodeMovie($movieNode, $rank = 0)
 	{
 		$node = $movieNode->item($rank);
+		if($node === null)
+		{
+			return false;
+		}
 		$enfants = $node->childNodes;	
 		$idMovie = $node->getAttribute('id');
 		$titre='';
