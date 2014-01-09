@@ -160,11 +160,28 @@ class MainController
         }
     }
 
-    public function customerUpdateMyProfile($getData)
+    public function customerUpdateMyProfileForm($getData)
     {
         if(isset($getData['update-profile']))
         {
            $this->customerOnCustomerController->printMyDataCustomer();
+        }
+    }
+
+    public function customerUpdateMyProfile($postData)
+    {
+        if(
+            isset(
+                $postData['update-customer'], 
+                $postData['id-customer'],
+                $postData['lastname'],
+                $postData['firstname'],
+                $postData['credit'],
+                $postData['login']
+            )
+        )
+        {
+           $this->customerOnCustomerController->updateMyDataCustomer($postData);
         }
     }
     // mixed controllers
@@ -223,9 +240,17 @@ class MainController
 
     public function adminUpdateCustomerListener($postData)
     {
-        if(isset($postData['update-customer'], $postData['id-customer']))
+        if(isset(
+            $postData['update-customer'], 
+            $postData['id-customer'],
+            $postData['lastname'],
+            $postData['firstname'],
+            $postData['credit'],
+            $postData['login']
+            )
+        )
         {
-            $this->adminOnCustomerController->updateCustommerData($postData['id-customer'], $postData);
+            $this->adminOnCustomerController->updateCustomerData($postData['id-customer'], $postData);
         }
     }
 

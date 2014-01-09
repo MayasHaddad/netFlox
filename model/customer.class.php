@@ -62,6 +62,21 @@ class Customer
 		);
 	}
 
+	public function updatePassword($idCustomer, $password)
+	{
+		$statement = $this->dataBaseConnection->prepare(
+			"UPDATE customer SET password = :password
+			WHERE id_customer = :idCustomer"
+		);
+
+		$statement->execute(
+			array(
+				':password' => md5($password),
+				':idCustomer' => $idCustomer
+			)
+		);
+	}
+
 	public function getOneCustomer($idCustomer)
 	{
 		$statement = $this->dataBaseConnection->prepare(

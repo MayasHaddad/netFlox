@@ -28,7 +28,9 @@ $mainController->searchMovieForm($_GET);
 
 $mainController->searchOneMovieByName($_POST, $initialContext);
 
-$mainController->customerUpdateMyProfile($_GET);
+$mainController->customerUpdateMyProfileForm($_GET);
+
+$mainController->customerUpdateMyProfile($_POST);
 
 $mainController->deconnectionListener($_GET);
 

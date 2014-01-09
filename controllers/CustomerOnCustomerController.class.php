@@ -65,6 +65,33 @@ class CustomerOnCustomerController
         }	
     }
 
+    public function updateMyDataCustomer($postedData)
+    {
+        if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))
+        {
+            if($postedData['oldPassword'] !== '' && $postedData['newPassword'] !== '' && $postedData['newPasswordConfirm'] !== '')
+            {
+                if($this->customer->getNumberOfCustomers($this->session->getSessionVariable('email'), $postedData['oldPassword']) === 0)
+                {
+                    $this->mainController->addTwigTemplateVariables(array('error' => 'Old password mismatch!'));
+                    return;
+                }
+                if($postedData['newPassword'] !== $postedData['newPasswordConfirm'])
+                {
+                    $this->mainController->addTwigTemplateVariables(array('error' => 'New password mismatch!'));
+                    return;
+                }
+            
+                $this->customer->updatePassword($postedData['id-customer'], $postedData['newPassword']);
+            }
+
+            $this->customer->updateCustomer($postedData['id-customer'], $postedData);
+            $this->mainController->addTwigTemplateVariables(array('notification' => 'Account successfully updated!'));
+            return;
+        }
+        $this->mainController->addTwigTemplateVariables(array('error' => 'Missing field!'));
+    }
+
     public function printMyDataCustomer()
     {
         if($this->userConnectionController->checkCustomerData($this->session->getSessionVariable()))

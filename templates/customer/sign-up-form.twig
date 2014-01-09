@@ -1,11 +1,16 @@
 {% extends "customer/customer-information-form.twig" %}
+placeholder="Nom
+placeholder="Prénom"
+placeholder="Adresse mail"
+placeholder="Login"
+placeholder="Montant à créditer"
 {% block password %} 
 	<li class=""> 
-		Mot de passe : <input type="password" name="password">
+		<input type="password" name="password" placeholder="Mot de passe">
 	</li>
 
 	<li class=""> 
-		Confirmer mot de passe : <input type="password" name="confirm-password">
+		<input type="password" name="confirm-password" placeholder="Confirmer mot de passe">
 	</li>
 {% endblock %}
 

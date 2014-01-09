@@ -1,20 +1,12 @@
-{% extends "customer/customer-information-form.twig" %}
-{% block valueLastname %}  value="{{ user.lastname }}" {% endblock %}
-{% block valueFirstname %}  value="{{ user.firstname }}" {% endblock %}
-{% block valueMailAddress %}  value="{{ user.mailAddress }}" {% endblock %}
-{% block valueLogin %}  value="{{ user.login }}" {% endblock %}
-{% block oldPassword %} 
+{% extends "admin/update-customer-data-form.twig" %}
+{% block password %}
 	<li class="">
-		Ancien de passe : <input type="password" name="oldPassword">
+		<input type="password" name="oldPassword" placeholder="Ancien de passe">
+	</li>
+	<li class="">
+		<input type="password" name="newPassword" placeholder="Nouveau mot de passe">
+	</li>
+	<li class="">
+		<input type="password" name="newPasswordConfirm" placeholder="Confirmer nouveau mot de passe">
 	</li>
 {% endblock %}
-{% block passwordLabel %} Nouveau mot de passe : {% endblock %}
-{% block confirmPasswordLabel %} Confirmer nouveau mot de passe : {% endblock %}
-{% block currentCredit %} 
-	<li class="">
-		{{ account.currentCredit }}
-	</li>
-{% endblock %}
-{% block submit %} <li class="">
-		<input type="submit" name="updateAccount" value="Submit">
-	</li>{% endblock %}
