@@ -71,7 +71,7 @@ class AdminOnCustomerController
         }
     }
     
-    public function updateCustommerData($idCustomer, $newCustomerData)
+    public function updateCustomerData($idCustomer, $newCustomerData)
     {
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
