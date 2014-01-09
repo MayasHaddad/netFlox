@@ -28,7 +28,3 @@ class Admin
 		return (int) $statement->fetch()[0];
 	}
 }
-/* This script creates a new admin 
-$dbc = DatabaseManager::getDatabaseConnection();
-$dbc->exec("INSERT INTO admin(email, password) VALUES('admin@example.com', '" . md5('pass') . "')");
-*/
