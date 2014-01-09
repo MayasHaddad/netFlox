@@ -1,6 +1,6 @@
 <?php
 /**
-* This controller handles the customer interactions with other customers
+* This controller handles the customer interactions with other customers (or themselves)
 * @author Mayas Haddad
 */
 class CustomerOnCustomerController

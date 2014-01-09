@@ -1,6 +1,6 @@
 <?php
 /**
-* This controller handles the user connection to the account and deconnection
+* This controller handles the user(admin+customer) connection to the account and deconnection
 * @author Mayas Haddad
 */
 class UserConnectionController
