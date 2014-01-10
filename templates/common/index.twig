@@ -6,7 +6,7 @@
 	    <link rel="stylesheet" href="{{initialContext}}styles/notifications.css">
 	    <link rel="stylesheet" href="{{initialContext}}styles/entry-banner.css">
 	    <link rel="stylesheet" href="{{initialContext}}styles/footer.css">
-	    <link rel="icon" type="image/png" href="ressources/cinema.png" />
+	    <link rel="icon" type="image/png" href="{{initialContext}}ressources/cinema.png" />
 	</head>
 	<body>
 		{% include 'common/entry-banner.twig' %}
@@ -14,10 +14,6 @@
 	    {% if not(connected) %}
 			{% include 'common/sign-in-form.twig' %}
 		{% endif %}
-
-	    <div id="header">
-	    {% block header %} {% endblock %}
-	    </div>
 	    
 	    {% if notification %}
 			{% include 'common/notification.twig' %}
@@ -27,6 +23,9 @@
 			{% include 'common/error.twig' %}
 		{% endif %}
 	    <div id="body">
+		    <div id="header">
+		    {% block header %} {% endblock %}
+		    </div>
 	    {% block body %} {% endblock %}
 	    </div>
 	    {% block footer %} {% endblock %}
