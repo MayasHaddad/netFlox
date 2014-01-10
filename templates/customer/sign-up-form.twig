@@ -1,9 +1,9 @@
 {% extends "customer/customer-information-form.twig" %}
-placeholder="Nom
-placeholder="Prénom"
-placeholder="Adresse mail"
-placeholder="Login"
-placeholder="Montant à créditer"
+{% block valueMailAddress %} 
+	<li>
+		<input type="text" name="mail-address" placeholder="Email">
+	</li>
+{% endblock %}
 {% block password %} 
 	<li class=""> 
 		<input type="password" name="password" placeholder="Mot de passe">
