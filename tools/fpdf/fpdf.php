@@ -169,7 +169,7 @@ function FPDF($orientation='P', $unit='mm', $size='A4')
 
 
 // Tableau simple
-function BasicTable($header, $data)
+function BasicTable($header, $data, $dontTake = array())
 {
     // En-tête
     foreach($header as $col)
@@ -180,7 +180,10 @@ function BasicTable($header, $data)
     {
     	// ATTENTION CODE DUR
     	foreach ($row as $key => $case) {
-            $this->Cell(40,6,$case,1);
+    		if(!in_array($key, $dontTake) && intval($key) === 0)
+    		{
+            	$this->Cell(40,6,$case,1);	
+    		}
     	}
         $this->Ln();
     }

@@ -10,7 +10,7 @@ class PdfManager
 
     }
 
-     public function getCataloguePdf($header, $moviesData)
+    public function getCataloguePdf($header, $moviesData)
     {
         $pdf = new FPDF();
         $pdf->AddPage();
@@ -18,14 +18,15 @@ class PdfManager
         $pdf->BasicTable($header, $moviesData);
         $pdf->Output();   
     }
+
     public function getAuditPdf($header, $customerData, $period, $turnover)
     {
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetFont('Arial','B',10);
-        $pdf->BasicTable($header, $customerData);
+        $pdf->BasicTable($header, $customerData, array('id_customer'));
         $pdf->AddPage();
-        $pdf->Cell(40, 10, 'Depuis le '. $period . 'votre chiffre d\'affaires est de : ' . $turnover);
+        $pdf->Cell(40, 10, 'Depuis le '. $period . ' votre chiffre d\'affaires est de : ' . $turnover);
         //$pdf->Cell(40, 10, $contentString);
         $pdf->Output();   
     }

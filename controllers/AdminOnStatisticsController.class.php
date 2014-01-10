@@ -29,7 +29,7 @@ class AdminOnStatisticsController
         if($this->userConnectionController->checkAdminData($this->session->getSessionVariable()))
         {
         	$outputStat = '';
-        	$header = array('firstname', 'lastname', 'login', 'email', 'credit');
+        	$header = array('login', 'lastname', 'firstname', 'email', 'credit');
         	$data = $this->customer->getAllCustomers();
         	$this->pdfManager->getAuditPdf($header, $data, $period, $this->transaction->getTurnoverOnTransactions($period));
         }
